@@ -853,3 +853,18 @@ p { color: var(--muted); }
 }
 .page-hero h1 { font-size: clamp(30px,5vw,56px); font-weight: 800; letter-spacing: -2px; margin-bottom: 16px; }
 .page-hero p { font-size: 16px; color: var(--muted); max-width: 520px; margin: 0 auto 32px; }
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+img,
+svg,
+canvas,
+iframe {
+    max-width: 100%;
+}
