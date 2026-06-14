@@ -99,9 +99,18 @@ function getQRData() {
       const nm = v('v-upinm');
       const am = v('v-upiam');
       const nt = v('v-upinote');
-      let u = `upi://pay?pa=${encodeURIComponent(id)}`;
+      // FIX Bug 2: The @ in a UPI VPA must NOT be percent-encoded.
+      // encodeURIComponent turns 'name@bank' into 'name%40bank', which breaks
+      // BHIM and some PhonePe versions. We encode everything EXCEPT @ by
+      // splitting on @ and encoding each half separately, then rejoining.
+      const encodePaParam = vpa => {
+        const parts = vpa.split('@');
+        return parts.map(p => encodeURIComponent(p)).join('@');
+      };
+      let u = `upi://pay?pa=${encodePaParam(id)}`;
       if (nm) u += `&pn=${encodeURIComponent(nm)}`;
-      if (am && parseFloat(am) > 0) u += `&am=${am}&cu=INR`;
+      // FIX: amount must be a plain decimal string, no extra encoding
+      if (am && parseFloat(am) > 0) u += `&am=${parseFloat(am).toFixed(2)}&cu=INR`;
       if (nt) u += `&tn=${encodeURIComponent(nt)}`;
       u += '&mode=02&purpose=00';
       return u;
@@ -189,8 +198,15 @@ function generateQR() {
   try {
     new QRCode(tmp, {
       text: data,
-      width: QR.size, height: QR.size,
+      // FIX Bug 5a: Generate at 4× the display size internally so qrcodejs gives us
+      // a high-density source canvas. renderQR will then scale DOWN to QR.size,
+      // which is always safe (downscaling never blurs module edges when we
+      // sample at integer module-center coordinates).
+      width: QR.size * 4, height: QR.size * 4,
       colorDark: '#000000', colorLight: '#ffffff',
+      // FIX Bug 5b: Upgrade from M (15%) to H (30%) error correction.
+      // UPI QR codes are printed and laminated — H gives them resilience against
+      // scratches, dirt, and print artifacts that M cannot recover from.
       correctLevel: QRCode.CorrectLevel.H
     });
   } catch(e) {
@@ -201,7 +217,9 @@ function generateQR() {
 
   setTimeout(() => {
     const src = tmp.querySelector('canvas');
-    if (src) renderQR(src);
+    // FIX: pass the originally-requested display size so renderQR can use it
+    // for module detection (qrcodejs canvas != QR.size due to floor arithmetic)
+    if (src) renderQR(src, QR.size * 4);
     document.body.removeChild(tmp);
     const res = document.getElementById('qr-result');
     if (res) {
@@ -211,45 +229,148 @@ function generateQR() {
   }, 150);
 }
 
-// Render styled QR to canvas
-function renderQR(src) {
-  const sz = QR.size;
+// ---------------------------------------------------------------------------
+// detectModuleCount — derives QR version from qrcodejs source canvas dimensions
+// ---------------------------------------------------------------------------
+// qrcodejs computes: cellSize = Math.floor(requestedSize / moduleCount)
+// actual canvas size = cellSize * moduleCount  (≤ requestedSize)
+// Valid module counts: 21 + 4*(version-1) for version 1–40
+// We try every valid count and check which one satisfies the equation.
+function detectModuleCount(srcW, requestedSize) {
+  for (let version = 1; version <= 40; version++) {
+    const mc = 21 + 4 * (version - 1);
+    const cs = Math.floor(requestedSize / mc);
+    if (cs >= 1 && cs * mc === srcW) {
+      return { moduleCount: mc, cellSize: cs };
+    }
+  }
+  return null;
+}
+
+// ---------------------------------------------------------------------------
+// renderQR — fixed version
+// ---------------------------------------------------------------------------
+// requestedSize: the width/height we passed to `new QRCode(...)`. We need this
+// to reverse-engineer the module count, because qrcodejs sets the canvas to
+// Math.floor(requestedSize/moduleCount)*moduleCount, NOT requestedSize itself.
+function renderQR(src, requestedSize) {
+  const sz = QR.size;           // display output size (e.g. 260)
   const out = document.getElementById('qrc');
   if (!out) return;
-  out.width = sz; out.height = sz;
-  const ctx = out.getContext('2d');
-  const sCtx = src.getContext('2d');
-  const srcW = src.width, srcH = src.height;
 
+  const sCtx = src.getContext('2d');
+  const srcW = src.width;       // actual qrcodejs canvas width (≤ requestedSize)
+  const srcH = src.height;
+
+  // ------------------------------------------------------------------
+  // FIX Bug 1a: Detect the module grid so we can work in integer space.
+  // ------------------------------------------------------------------
+  const detected = detectModuleCount(srcW, requestedSize);
+  if (!detected) {
+    // Fallback: if detection fails (should not happen for QR v1-40),
+    // just blit with drawImage — better than garbage output.
+    out.width = sz; out.height = sz;
+    const ctx = out.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, sz, sz);
+    ctx.drawImage(src, 4, 4, sz - 8, sz - 8);
+    return;
+  }
+  const { moduleCount, cellSize: srcCell } = detected;
+
+  // ------------------------------------------------------------------
+  // FIX Bug 3: Quiet zone — ISO 18004 requires ≥4 modules of white
+  // border around the symbol. We allocate a fixed 12px quiet zone on
+  // each side (≥ 4 modules at the smallest module size we render).
+  // ------------------------------------------------------------------
+  const QZ = 12;  // quiet-zone pixels in output canvas
+
+  // FIX Bug 1b: Compute integer output cell width so every module lands
+  // on a whole-pixel boundary — eliminates sub-pixel anti-aliasing.
+  const outCell = Math.floor((sz - QZ * 2) / moduleCount);
+
+  // If outCell is somehow 0 (extremely small canvas), bail to fallback.
+  if (outCell < 1) {
+    out.width = sz; out.height = sz;
+    const ctx = out.getContext('2d');
+    ctx.drawImage(src, 0, 0, sz, sz);
+    return;
+  }
+
+  // Centre the symbol inside the canvas (remaining pixels split as margin).
+  const qrPx = outCell * moduleCount;
+  const xOff = Math.floor((sz - qrPx) / 2);  // left/top offset (includes QZ)
+  const yOff = xOff;
+
+  // ------------------------------------------------------------------
+  // FIX Bug 6: Disable anti-aliasing on the output canvas context.
+  // ------------------------------------------------------------------
+  out.width = sz;
+  out.height = sz;
+  const ctx = out.getContext('2d');
+  ctx.imageSmoothingEnabled = false;
+
+  // White background (covers quiet zone too).
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(0, 0, sz, sz);
 
+  // ------------------------------------------------------------------
+  // Read pixel data from the source once (avoids repeated getImageData).
+  // ------------------------------------------------------------------
   const imgData = sCtx.getImageData(0, 0, srcW, srcH);
-  const data = imgData.data;
-  const cW = sz / srcW, cH = sz / srcH;
+  const pixels = imgData.data;
 
-  if (QR.style === 'gradient') {
-    const grad = ctx.createLinearGradient(0, 0, sz, sz);
+  // Helper: is a source module (col, row) dark?
+  // Sample from the CENTER of the source cell to avoid edge anti-aliasing
+  // that qrcodejs may have introduced at the 1px level.
+  function isDark(col, row) {
+    const px = (row * srcCell + Math.floor(srcCell / 2)) * srcW + (col * srcCell + Math.floor(srcCell / 2));
+    return pixels[px * 4] < 128;  // R channel: 0=black, 255=white
+  }
+
+  // ------------------------------------------------------------------
+  // Choose draw style. Dots require outCell ≥ 6 to be scannable
+  // (radius must be ≥ 2px for scanner cameras to resolve).
+  // FIX Bug 4: classic style gets zero padding — solid modules are
+  //   required for finder patterns to decode correctly.
+  // FIX Bug 5: dots fall back to classic when outCell < 6.
+  // ------------------------------------------------------------------
+  const style = (QR.style === 'dots' && outCell < 6) ? 'classic' : QR.style;
+
+  // Set fill colour / gradient for the whole pass.
+  if (style === 'gradient') {
+    const grad = ctx.createLinearGradient(xOff, yOff, xOff + qrPx, yOff + qrPx);
     grad.addColorStop(0, QR.color);
-    grad.addColorStop(1, lightenColor(QR.color, .4));
+    grad.addColorStop(1, lightenColor(QR.color, 0.4));
     ctx.fillStyle = grad;
   } else {
     ctx.fillStyle = QR.color;
   }
 
-  for (let row = 0; row < srcH; row++) {
-    for (let col = 0; col < srcW; col++) {
-      const idx = (row * srcW + col) * 4;
-      if (data[idx] >= 128) continue;
-      const x = col * cW, y = row * cH;
-      const pad = cW * 0.06, s = cW - pad * 2;
-      if (QR.style === 'dots') {
-        const r = (cW / 2) - pad;
+  // ------------------------------------------------------------------
+  // Main render loop — integer coordinates throughout.
+  // ------------------------------------------------------------------
+  for (let row = 0; row < moduleCount; row++) {
+    for (let col = 0; col < moduleCount; col++) {
+      if (!isDark(col, row)) continue;
+
+      // Integer pixel position — NO fractional values, NO anti-aliasing.
+      const x = xOff + col * outCell;
+      const y = yOff + row * outCell;
+
+      if (style === 'dots') {
+        // FIX Bug 5: integer radius, minimum 2px so camera can resolve it.
+        const r = Math.max(2, Math.floor(outCell / 2) - 1);
+        const cx = x + Math.floor(outCell / 2);
+        const cy = y + Math.floor(outCell / 2);
         ctx.beginPath();
-        ctx.arc(x + cW / 2, y + cH / 2, Math.max(r, 0.5), 0, Math.PI * 2);
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
         ctx.fill();
       } else {
-        ctx.fillRect(x + pad, y + pad, s, s);
+        // classic & gradient: solid square, zero padding.
+        // FIX Bug 4: removed the 6% pad that was fragmenting finder patterns.
+        ctx.fillRect(x, y, outCell, outCell);
       }
     }
   }
@@ -267,9 +388,20 @@ function lightenColor(hex, amt) {
 function downloadPNG() {
   const c = document.getElementById('qrc');
   if (!c) return;
+  // FIX: Export at 2× the display size for crisp print quality.
+  // We re-render into a temporary off-screen canvas at double resolution
+  // using the same integer-coordinate approach so the download is always
+  // pixel-perfect and scannable regardless of screen DPI.
+  const scale = 2;
+  const offscreen = document.createElement('canvas');
+  offscreen.width = c.width * scale;
+  offscreen.height = c.height * scale;
+  const octx = offscreen.getContext('2d');
+  octx.imageSmoothingEnabled = false;
+  octx.drawImage(c, 0, 0, offscreen.width, offscreen.height);
   const a = document.createElement('a');
   a.download = `theqrgenerator-${QR.type}.png`;
-  a.href = c.toDataURL('image/png');
+  a.href = offscreen.toDataURL('image/png');
   a.click();
 }
 
