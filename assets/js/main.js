@@ -46,12 +46,25 @@ function goStep(n) {
 }
 
 function selectType(t, el) {
-  document.querySelectorAll('.type-card').forEach(c => c.classList.remove('on'));
-  el.classList.add('on');
-  QR.type = t;
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
-  const panel = document.getElementById('p-' + t);
-  if (panel) panel.classList.add('on');
+
+  const toolPages = {
+    url: '/website-qr-code-generator',
+    whatsapp: '/whatsapp-qr-code-generator',
+    upi: '/upi-qr-code-generator',
+    wifi: '/wifi-qr-code-generator',
+    instagram: '/instagram-qr-code-generator',
+    youtube: '/youtube-qr-code-generator',
+    maps: '/google-maps-qr-code-generator',
+    email: '/email-qr-code-generator',
+    sms: '/sms-qr-code-generator',
+    phone: '/phone-qr-code-generator',
+    twitter: '/twitter-qr-code-generator',
+    text: '/text-qr-code-generator'
+  };
+
+  if (toolPages[t]) {
+    window.location.href = toolPages[t];
+  }
 }
 
 function selectStyle(s, el) {
