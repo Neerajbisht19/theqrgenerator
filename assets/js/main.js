@@ -214,15 +214,7 @@ function generateQR() {
     const src = tmp.querySelector('canvas');
     // FIX: pass the originally-requested display size so renderQR can use it
     // for module detection (qrcodejs canvas != QR.size due to floor arithmetic)
-    if (src) {
-  const out = document.getElementById('qrc');
-  const ctx = out.getContext('2d');
-
-  out.width = QR.size;
-  out.height = QR.size;
-
-  ctx.drawImage(src, 0, 0, QR.size, QR.size);
-    }
+    if (src) renderQR(src, QR.size * 4);
     document.body.removeChild(tmp);
     const res = document.getElementById('qr-result');
     if (res) {
