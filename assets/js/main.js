@@ -94,26 +94,21 @@ function getQRData() {
     }
 
     case 'upi': {
-      const id = v('v-upiid');
-      if (!id) return null;
-      const nm = v('v-upinm');
-      const am = v('v-upiam');
-      const nt = v('v-upinote');
-      // FIX Bug 2: The @ in a UPI VPA must NOT be percent-encoded.
-      // encodeURIComponent turns 'name@bank' into 'name%40bank', which breaks
-      // BHIM and some PhonePe versions. We encode everything EXCEPT @ by
-      // splitting on @ and encoding each half separately, then rejoining.
-      const encodePaParam = vpa => {
-        const parts = vpa.split('@');
-        return parts.map(p => encodeURIComponent(p)).join('@');
-      };
-      let u = `upi://pay?pa=${encodePaParam(id)}`;
-      if (nm) u += `&pn=${encodeURIComponent(nm)}`;
-      // FIX: amount must be a plain decimal string, no extra encoding
-      if (am && parseFloat(am) > 0) u += `&am=${parseFloat(am).toFixed(2)}&cu=INR`;
-      if (nt) u += `&tn=${encodeURIComponent(nt)}`;
-      u += '&mode=02&purpose=00';
-      return u;
+  const id = v('v-upiid');
+  if (!id) return null;
+
+  const nm = v('v-upinm');
+  const am = v('v-upiam');
+  const nt = v('v-upinote');
+
+  let u = `upi://pay?pa=${id.trim()}`;
+
+  if (nm) u += `&pn=${encodeURIComponent(nm)}`;
+  if (am && parseFloat(am) > 0) u += `&am=${parseFloat(am)}`;
+  u += `&cu=INR`;
+  if (nt) u += `&tn=${encodeURIComponent(nt)}`;
+
+  return u;
     }
 
     case 'wifi': {
