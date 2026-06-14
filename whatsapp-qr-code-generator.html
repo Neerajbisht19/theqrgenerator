@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp QR Code Generator — Free | The QR Generator</title>
+<meta name="description" content="Generate a WhatsApp QR code free. Let anyone start a chat without saving your number. Choose country code, pre-fill a message, download PNG or SVG instantly.">
+<link rel="canonical" href="https://theqrgenerator.in/whatsapp-qr-code-generator">
+<meta property="og:title" content="WhatsApp QR Code Generator — Free | The QR Generator">
+<meta property="og:description" content="Generate a WhatsApp QR code. No signup, no watermark. Let anyone chat with you by scanning.">
+<meta property="og:url" content="https://theqrgenerator.in/whatsapp-qr-code-generator">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can someone chat with me without saving my number?","acceptedAnswer":{"@type":"Answer","text":"Yes. When someone scans your WhatsApp QR code, it opens a chat with you directly, no phone number saving required."}},{"@type":"Question","name":"Does the pre-filled message get sent automatically?","acceptedAnswer":{"@type":"Answer","text":"No. The message is pre-filled in the compose box. The person still taps Send — giving them a chance to edit or cancel."}}]}
+</script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-mark"><svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" fill="white"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="11" y="1" width="6" height="6" rx="1"/><rect x="1" y="11" width="6" height="6" rx="1"/><rect x="11" y="11" width="3" height="3" rx=".5"/><rect x="15" y="11" width="2" height="2" rx=".5"/><rect x="11" y="15" width="2" height="2" rx=".5"/><rect x="14" y="14" width="3" height="3" rx=".5"/></svg></div>
+    The QR Generator
+  </a>
+  <div class="nav-links" id="nav-links">
+    <a href="/qr-code-generator" class="nav-link">All Tools</a>
+    <a href="/whatsapp-qr-code-generator" class="nav-link active">WhatsApp</a>
+    <a href="/upi-qr-code-generator" class="nav-link">UPI</a>
+    <a href="/wifi-qr-code-generator" class="nav-link">WiFi</a>
+    <a href="/blog" class="nav-link">Blog</a>
+    <a href="/qr-code-generator" class="nav-cta">All Tools</a>
+  </div>
+  <button class="nav-mobile-toggle" onclick="document.getElementById('nav-links').classList.toggle('open')" aria-label="Menu">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><rect y="3" width="20" height="2" rx="1"/><rect y="9" width="20" height="2" rx="1"/><rect y="15" width="20" height="2" rx="1"/></svg>
+  </button>
+</nav>
+<div class="breadcrumb">
+  <a href="/">Home</a><span class="breadcrumb-sep">›</span>
+  <a href="/qr-code-generator">QR Tools</a><span class="breadcrumb-sep">›</span>
+  <span>WhatsApp QR Code Generator</span>
+</div>
+<div class="wrap"><div class="ad-slot ad-slot-top"><span>Advertisement</span></div></div>
+<div class="page-layout" style="padding-top:24px">
+  <div class="page-main">
+    <div style="margin-bottom:20px">
+      <div class="hero-badge" style="display:inline-flex;margin-bottom:12px"><span style="font-size:18px">💬</span>&nbsp;Free WhatsApp Tool</div>
+      <h1 style="font-size:clamp(26px,4vw,42px);font-weight:800;letter-spacing:-1.5px;margin-bottom:10px">WhatsApp QR Code Generator</h1>
+      <p style="color:var(--muted);font-size:15px;max-width:560px">Create a QR code that opens a WhatsApp chat with your number. Works for business, shops, freelancers, and anyone who wants easier contact.</p>
+    </div>
+    <div class="tool-card">
+      <div class="stepbar">
+        <div class="step active" id="sp1"><div class="step-num">1</div><div class="step-label">Your Number</div></div>
+        <div class="step-line" id="sl1"></div>
+        <div class="step" id="sp2"><div class="step-num">2</div><div class="step-label">Customize</div></div>
+        <div class="step-line" id="sl2"></div>
+        <div class="step" id="sp3"><div class="step-num">3</div><div class="step-label">Download</div></div>
+      </div>
+      <div id="s1" class="tool-body">
+        <div class="two-col">
+          <div class="field">
+            <label class="field-label" for="v-wacc">Country Code</label>
+            <select class="field-select" id="v-wacc">
+              <option value="91">+91 India</option>
+              <option value="1">+1 USA/Canada</option>
+              <option value="44">+44 UK</option>
+              <option value="971">+971 UAE</option>
+              <option value="65">+65 Singapore</option>
+              <option value="61">+61 Australia</option>
+              <option value="49">+49 Germany</option>
+              <option value="33">+33 France</option>
+              <option value="81">+81 Japan</option>
+              <option value="86">+86 China</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field-label" for="v-waph">Phone Number <span style="color:var(--red-light)">*</span></label>
+            <input class="field-input" id="v-waph" type="tel" placeholder="9876543210">
+            <div class="field-hint">Without country code or + sign</div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label" for="v-wamsg">Pre-filled Message (optional)</label>
+          <textarea class="field-textarea" id="v-wamsg" placeholder="Hi! I found your QR code and would like to enquire about..."></textarea>
+          <div class="field-hint">The person can still edit or delete this before sending</div>
+        </div>
+      </div>
+      <div class="tool-foot" id="s1-foot" style="display:flex">
+        <button class="btn-nav-next" onclick="goStepTool(2)">Customize →</button>
+      </div>
+      <div id="s2" class="tool-body" style="display:none">
+        <div style="margin-bottom:16px">
+          <label class="field-label">QR Style</label>
+          <div class="style-row">
+            <div class="style-opt on" onclick="selectStyle('classic',this)"><div class="style-opt-icon">▦</div><div class="style-opt-name">Classic</div></div>
+            <div class="style-opt" onclick="selectStyle('dots',this)"><div class="style-opt-icon">⠿</div><div class="style-opt-name">Dots</div></div>
+            <div class="style-opt" onclick="selectStyle('gradient',this)"><div class="style-opt-icon">◈</div><div class="style-opt-name">Gradient</div></div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div style="margin-bottom:16px">
+          <label class="field-label">Color</label>
+          <div class="color-row">
+            <div class="color-swatch on" style="background:#000000" data-c="#000000" onclick="selectColor(this)"></div>
+            <div class="color-swatch" style="background:#25D366" data-c="#25D366" onclick="selectColor(this)"></div>
+            <div class="color-swatch" style="background:#e8000d" data-c="#e8000d" onclick="selectColor(this)"></div>
+            <div class="color-swatch" style="background:#1a1a2e" data-c="#1a1a2e" onclick="selectColor(this)"></div>
+            <div class="color-custom"><span>+</span><input type="color" value="#000000" onchange="selectCustomColor(this.value)"></div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div>
+          <label class="field-label">Size</label>
+          <div class="size-row">
+            <button class="size-btn" onclick="selectSize(180,this)">Small<br>180px</button>
+            <button class="size-btn on" onclick="selectSize(260,this)">Medium<br>260px</button>
+            <button class="size-btn" onclick="selectSize(360,this)">Large<br>360px</button>
+            <button class="size-btn" onclick="selectSize(500,this)">Print<br>500px</button>
+          </div>
+        </div>
+      </div>
+      <div class="tool-foot" id="s2-foot" style="display:none">
+        <button class="btn-nav-back" onclick="goStepTool(1)">← Back</button>
+        <button class="btn-generate" onclick="generateQR()">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="5" height="5" rx="1"/><rect x="10" y="1" width="5" height="5" rx="1"/><rect x="1" y="10" width="5" height="5" rx="1"/><rect x="10" y="10" width="5" height="5" rx="1"/></svg>
+          Generate WhatsApp QR
+        </button>
+      </div>
+      <div class="qr-result" id="qr-result">
+        <div class="qr-stage">
+          <div class="qr-type-badge" id="qr-type-badge">WHATSAPP QR READY</div>
+          <div class="qr-frame"><div class="qr-frame-inner"><div class="qr-box"><canvas id="qrc"></canvas></div></div></div>
+          <div class="qr-dl-row">
+            <button class="dl-btn dl-png" onclick="downloadPNG()">⬇ PNG</button>
+            <button class="dl-btn dl-svg" onclick="downloadSVG()">⬇ SVG</button>
+          </div>
+          <button class="re-edit-btn" onclick="reEdit()">Edit settings</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-slot" style="margin-top:24px"><span>Advertisement</span></div>
+
+    <div class="prose" style="margin-top:40px">
+      <h2>What is a WhatsApp QR Code?</h2>
+      <p>A WhatsApp QR code is a scannable code that opens a WhatsApp chat with a specific number. When someone scans it, their WhatsApp opens instantly — no need to save your number first. This is the same mechanism WhatsApp uses for its own "Click to Chat" feature, but packaged as a printable QR code.</p>
+
+      <h2>Why Use a WhatsApp QR Code?</h2>
+      <p>For businesses, a WhatsApp QR code on your counter, door, or packaging lets customers reach you with zero friction. For freelancers, it's an effective addition to visiting cards. For events, it lets attendees contact the organiser without announcing a phone number publicly.</p>
+
+      <h2>How the Pre-filled Message Works</h2>
+      <p>If you add a pre-filled message, WhatsApp will populate the compose box with your text when the chat opens. The person can edit or delete it — it is never sent automatically. A good pre-filled message gives context: <em>"Hi! I'm contacting you from your menu QR code."</em></p>
+
+      <h2>Tips for the Best Results</h2>
+      <ul>
+        <li>Use the <strong>Large (360px)</strong> or <strong>Print (500px)</strong> size for physical prints.</li>
+        <li>Print at minimum 3×3 cm. Larger is always better for scanning distance.</li>
+        <li>Black on white has the highest contrast — best scan reliability.</li>
+        <li>Test your QR code before printing in bulk.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="page-sidebar">
+    <div class="ad-slot ad-slot-sidebar"><span>Advertisement</span></div>
+    <div style="margin-top:20px;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)">
+      <h3 style="font-size:14px;font-weight:700;margin-bottom:14px">Related Tools</h3>
+      <div class="related-grid" style="grid-template-columns:1fr">
+        <a href="/upi-qr-code-generator" class="related-card"><span class="related-card-icon">💳</span><span class="related-card-name">UPI QR</span></a>
+        <a href="/instagram-qr-code-generator" class="related-card"><span class="related-card-icon">📸</span><span class="related-card-name">Instagram QR</span></a>
+        <a href="/phone-qr-code-generator" class="related-card"><span class="related-card-icon">📞</span><span class="related-card-name">Phone QR</span></a>
+        <a href="/sms-qr-code-generator" class="related-card"><span class="related-card-icon">💬</span><span class="related-card-name">SMS QR</span></a>
+        <a href="/email-qr-code-generator" class="related-card"><span class="related-card-icon">📧</span><span class="related-card-name">Email QR</span></a>
+        <a href="/website-qr-code-generator" class="related-card"><span class="related-card-icon">🌐</span><span class="related-card-name">Website QR</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-hdr"><span class="section-label">FAQ</span><h2 class="section-title">WhatsApp QR Code — FAQ</h2></div>
+  <div class="faq-list">
+    <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Can someone message me without saving my number?<span class="faq-icon">+</span></button><div class="faq-answer">Yes. Scanning the QR code opens a chat with you directly in WhatsApp without the person needing to save your number to their contacts first.</div></div>
+    <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Does the pre-filled message get sent automatically?<span class="faq-icon">+</span></button><div class="faq-answer">No. The message is pre-filled in the compose box. The person can edit or delete it before tapping Send.</div></div>
+    <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Does my WhatsApp number need to be on the phone being scanned?<span class="faq-icon">+</span></button><div class="faq-answer">No. The QR code links to YOUR number. The person scans it on their own phone and it opens a chat from their WhatsApp to yours.</div></div>
+    <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Will this work on WhatsApp Business too?<span class="faq-icon">+</span></button><div class="faq-answer">Yes. WhatsApp and WhatsApp Business use the same wa.me link format. Scanning will open a chat regardless of which version the recipient uses.</div></div>
+    <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Is this QR code free to use commercially?<span class="faq-icon">+</span></button><div class="faq-answer">Yes. Download and use it on your shopfront, packaging, business cards, menus — no restrictions and no attribution required.</div></div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can someone message me without saving my number?","acceptedAnswer":{"@type":"Answer","text":"Yes. Scanning the QR code opens a chat with you directly without the person saving your number."}},{"@type":"Question","name":"Does the pre-filled message get sent automatically?","acceptedAnswer":{"@type":"Answer","text":"No. The message is pre-filled in the compose box. The person can edit it before sending."}}]}
+</script>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-logo"><div class="footer-brand-mark"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="white"><rect x="1" y="1" width="5" height="5" rx="1"/><rect x="10" y="1" width="5" height="5" rx="1"/><rect x="1" y="10" width="5" height="5" rx="1"/><rect x="10" y="10" width="6" height="6" rx="1"/></svg></div>The QR Generator</div>
+      <p>Free QR code generator. No signup. No watermark. Always free.</p>
+    </div>
+    <div class="footer-col"><h4>QR Tools</h4>
+      <a href="/website-qr-code-generator">Website QR</a><a href="/whatsapp-qr-code-generator">WhatsApp QR</a><a href="/upi-qr-code-generator">UPI QR</a><a href="/wifi-qr-code-generator">WiFi QR</a>
+    </div>
+    <div class="footer-col"><h4>More</h4>
+      <a href="/instagram-qr-code-generator">Instagram QR</a><a href="/youtube-qr-code-generator">YouTube QR</a><a href="/google-maps-qr-code-generator">Maps QR</a><a href="/email-qr-code-generator">Email QR</a>
+    </div>
+    <div class="footer-col"><h4>Company</h4>
+      <a href="/about">About</a><a href="/blog">Blog</a><a href="/contact">Contact</a><a href="/privacy-policy">Privacy</a><a href="/terms">Terms</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 The QR Generator. All rights reserved.</span>
+    <div class="footer-bottom-links"><a href="/privacy-policy">Privacy</a><a href="/terms">Terms</a></div>
+  </div>
+</footer>
+<script src="assets/js/main.js"></script>
+<script>
+QR.type = 'whatsapp';
+function goStepTool(n) {
+  [1,2].forEach(i=>{
+    document.getElementById('s'+i).style.display=i===n?'block':'none';
+    document.getElementById('s'+i+'-foot').style.display=i===n?'flex':'none';
+    document.getElementById('sp'+i).className='step'+(i<n?' done':i===n?' active':'');
+    if(i<2) document.getElementById('sl'+i).classList.toggle('done',i<n);
+  });
+  document.getElementById('qr-result').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function reEdit(){document.getElementById('qr-result').classList.remove('show');goStepTool(1);}
+</script>
+</body>
+</html>
