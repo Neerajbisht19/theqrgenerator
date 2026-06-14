@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free QR Code Generator — All Types | The QR Generator</title>
+<meta name="description" content="Generate any type of QR code free — website, WhatsApp, UPI, WiFi, Instagram, YouTube, Maps, Email, SMS, Phone, Twitter, and plain text. Instant download, no signup.">
+<link rel="canonical" href="https://theqrgenerator.in/qr-code-generator">
+<meta property="og:title" content="Free QR Code Generator — All Types | The QR Generator">
+<meta property="og:description" content="Generate any type of QR code free. 12+ types, instant download, no watermark, no signup.">
+<meta property="og:url" content="https://theqrgenerator.in/qr-code-generator">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Free QR Code Generator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+  "url": "https://theqrgenerator.in/qr-code-generator",
+  "description": "Generate any type of QR code free — 12+ types, instant download."
+}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" aria-label="Main navigation">
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-mark" aria-hidden="true">
+      <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="6" height="6" rx="1"/>
+        <rect x="11" y="1" width="6" height="6" rx="1"/>
+        <rect x="1" y="11" width="6" height="6" rx="1"/>
+        <rect x="11" y="11" width="3" height="3" rx=".5"/>
+        <rect x="15" y="11" width="2" height="2" rx=".5"/>
+        <rect x="11" y="15" width="2" height="2" rx=".5"/>
+        <rect x="14" y="14" width="3" height="3" rx=".5"/>
+      </svg>
+    </div>
+    The QR Generator
+  </a>
+  <div class="nav-links" id="nav-links">
+    <a href="/qr-code-generator" class="nav-link active">All Tools</a>
+    <a href="/whatsapp-qr-code-generator" class="nav-link">WhatsApp</a>
+    <a href="/upi-qr-code-generator" class="nav-link">UPI</a>
+    <a href="/wifi-qr-code-generator" class="nav-link">WiFi</a>
+    <a href="/blog" class="nav-link">Blog</a>
+    <a href="/qr-code-generator" class="nav-cta">Generate Free QR</a>
+  </div>
+  <button class="nav-mobile-toggle" onclick="document.getElementById('nav-links').classList.toggle('open')" aria-label="Toggle menu">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><rect y="3" width="20" height="2" rx="1"/><rect y="9" width="20" height="2" rx="1"/><rect y="15" width="20" height="2" rx="1"/></svg>
+  </button>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a>
+  <span class="breadcrumb-sep" aria-hidden="true">›</span>
+  <span>QR Code Generator</span>
+</div>
+
+<!-- AD TOP -->
+<div class="wrap">
+  <div class="ad-slot ad-slot-top" aria-label="Advertisement"><span>Advertisement</span></div>
+</div>
+
+<!-- TOOL AREA -->
+<div class="page-layout" style="padding-top:24px">
+  <div class="page-main">
+    <div style="margin-bottom:20px">
+      <h1 style="font-size:clamp(24px,4vw,36px);font-weight:800;letter-spacing:-1px;margin-bottom:8px">Free QR Code Generator</h1>
+      <p style="font-size:15px;color:var(--muted)">Choose your QR type, enter details, customize, and download. Completely free.</p>
+    </div>
+
+    <div class="tool-card" id="qr-tool">
+      <!-- STEP BAR -->
+      <div class="stepbar" role="navigation" aria-label="Steps">
+        <div class="step active" id="sp1">
+          <div class="step-num">1</div>
+          <div class="step-label">Choose Type</div>
+        </div>
+        <div class="step-line" id="sl1"></div>
+        <div class="step" id="sp2">
+          <div class="step-num">2</div>
+          <div class="step-label">Enter Details</div>
+        </div>
+        <div class="step-line" id="sl2"></div>
+        <div class="step" id="sp3">
+          <div class="step-num">3</div>
+          <div class="step-label">Customize</div>
+        </div>
+      </div>
+
+      <!-- STEP 1: TYPE SELECTION -->
+      <div id="s1" class="tool-body">
+        <div class="type-grid" role="listbox" aria-label="QR Code Type">
+          <div class="type-card on" onclick="selectType('url',this)" role="option" aria-selected="true" tabindex="0">
+            <span class="type-icon" aria-hidden="true">🌐</span>
+            <div class="type-name">Website</div>
+            <div class="type-desc">URL / Link</div>
+          </div>
+          <div class="type-card" onclick="selectType('whatsapp',this)" role="option" aria-selected="false" tabindex="0">
+            <span class="type-icon" aria-hidden="true">💬</span>
+            <div class="type-name">WhatsApp</div>
+            <div class="type-desc">Chat link</div>
+          </div>
+          <div class="type-card" onclick="selectType('upi',this)" role="option" aria-selected="false" tabindex="0">
+            <span class="type-icon" aria-hidden="true">💳</span>
+            <div class="type-name">UPI Pay</div>
+            <div class="type-desc">GPay etc.</div>
+          </div>
+          <div class="type-card" onclick="selectType('wifi',this)" role="option" aria-selected="false" tabindex="0">
+            <span class="type-icon" aria-hidden="true">📶</span>
+            <div class="type-name">WiFi</div>
+            <div class="type-desc">Auto-connect</div>
+          </div>
+          <div class="type-card" onclick="selectType('instagram',this)" role="option" aria-selected="false" tabindex="0">
+            <span class="type-icon" aria-hidden="true">📸</span>
+            <div class="type-name">Instagram</div>
+            <div class="type-desc">Profile</div>
+          </div>
+          <div class="type-card" onclick="selectType('youtube',this)" role="option" aria-selected="false" tabindex="0">
+            <span class="type-icon" aria-hidden="true">▶️</span>
+            <div class="type-name">YouTube</div>
+            <div class="type-desc">Channel/Video</div>
+          </div>
+          <div class="type-card" onclick="selectType('maps',this)" role="option" aria-selected="false" tabindex="0">
+            <span class="type-icon" aria-hidden="true">📍</span>
+            <div class="type-name">Maps</div>
+            <div class="type-desc">Location</div>
+          </div>
+          <div class="type-card" onclick="selectType('email',this)" role="option" aria-selected="false" tabindex="0">
+            <span class="type-icon" aria-hidden="true">📧</span>
+            <div class="type-name">Email</div>
+            <div class="type-desc">Compose</div>
+          </div>
+          <div class="type-card" onclick="selectType('sms',this)" role="option" aria-selected="false" tabindex="0">
+            <span class="type-icon" aria-hidden="true">💬</span>
+            <div class="type-name">SMS</div>
+            <div class="type-desc">Message</div>
+          </div>
+          <div class="type-card" onclick="selectType('phone',this)" role="option" aria-selected="false" tabindex="0">
+            <span class="type-icon" aria-hidden="true">📞</span>
+            <div class="type-name">Phone</div>
+            <div class="type-desc">Call</div>
+          </div>
+          <div class="type-card" onclick="selectType('twitter',this)" role="option" aria-selected="false" tabindex="0">
+            <span class="type-icon" aria-hidden="true">𝕏</span>
+            <div class="type-name">Twitter</div>
+            <div class="type-desc">Profile</div>
+          </div>
+          <div class="type-card" onclick="selectType('text',this)" role="option" aria-selected="false" tabindex="0">
+            <span class="type-icon" aria-hidden="true">📝</span>
+            <div class="type-name">Text</div>
+            <div class="type-desc">Any text</div>
+          </div>
+        </div>
+      </div>
+      <div class="tool-foot" id="s1-foot">
+        <button class="btn-nav-next" onclick="goStep(2)">Enter Details →</button>
+      </div>
+
+      <!-- STEP 2: DETAILS -->
+      <div id="s2" class="tool-body" style="display:none">
+        <!-- URL PANEL -->
+        <div class="panel on" id="p-url">
+          <div class="field">
+            <label class="field-label" for="v-url">Website URL</label>
+            <input class="field-input" id="v-url" type="url" placeholder="https://yourwebsite.com" autocomplete="url">
+            <div class="field-hint">Include https:// for best compatibility</div>
+          </div>
+        </div>
+
+        <!-- WHATSAPP PANEL -->
+        <div class="panel" id="p-whatsapp">
+          <div class="two-col">
+            <div class="field">
+              <label class="field-label" for="v-wacc">Country Code</label>
+              <select class="field-select" id="v-wacc">
+                <option value="91">+91 India</option>
+                <option value="1">+1 USA/Canada</option>
+                <option value="44">+44 UK</option>
+                <option value="971">+971 UAE</option>
+                <option value="65">+65 Singapore</option>
+                <option value="61">+61 Australia</option>
+                <option value="49">+49 Germany</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field-label" for="v-waph">Phone Number</label>
+              <input class="field-input" id="v-waph" type="tel" placeholder="9876543210" autocomplete="tel">
+            </div>
+          </div>
+          <div class="field">
+            <label class="field-label" for="v-wamsg">Pre-filled Message (optional)</label>
+            <textarea class="field-textarea" id="v-wamsg" placeholder="Hi! I saw your QR code..."></textarea>
+          </div>
+        </div>
+
+        <!-- UPI PANEL -->
+        <div class="panel" id="p-upi">
+          <div class="field">
+            <label class="field-label" for="v-upiid">UPI ID / VPA <span style="color:var(--red-light)">*</span></label>
+            <input class="field-input" id="v-upiid" type="text" placeholder="yourname@paytm or 9876543210@ybl">
+            <div class="field-hint">Works with GPay, PhonePe, Paytm, and all UPI apps</div>
+          </div>
+          <div class="two-col">
+            <div class="field">
+              <label class="field-label" for="v-upinm">Merchant Name (optional)</label>
+              <input class="field-input" id="v-upinm" type="text" placeholder="Your Shop Name">
+            </div>
+            <div class="field">
+              <label class="field-label" for="v-upiam">Amount in ₹ (optional)</label>
+              <input class="field-input" id="v-upiam" type="number" placeholder="0.00" min="0" step="0.01">
+            </div>
+          </div>
+          <div class="field">
+            <label class="field-label" for="v-upinote">Payment Note (optional)</label>
+            <input class="field-input" id="v-upinote" type="text" placeholder="e.g. Order #1234">
+          </div>
+        </div>
+
+        <!-- WIFI PANEL -->
+        <div class="panel" id="p-wifi">
+          <div class="field">
+            <label class="field-label" for="v-wfss">WiFi Network Name (SSID) <span style="color:var(--red-light)">*</span></label>
+            <input class="field-input" id="v-wfss" type="text" placeholder="MyHomeWiFi">
+          </div>
+          <div class="two-col">
+            <div class="field">
+              <label class="field-label" for="v-wfpw">Password</label>
+              <input class="field-input" id="v-wfpw" type="text" placeholder="wifi_password">
+            </div>
+            <div class="field">
+              <label class="field-label" for="v-wfsc">Security</label>
+              <select class="field-select" id="v-wfsc">
+                <option value="WPA">WPA/WPA2 (most routers)</option>
+                <option value="WEP">WEP (older)</option>
+                <option value="nopass">None (open)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- INSTAGRAM PANEL -->
+        <div class="panel" id="p-instagram">
+          <div class="field">
+            <label class="field-label" for="v-ig">Instagram Username <span style="color:var(--red-light)">*</span></label>
+            <input class="field-input" id="v-ig" type="text" placeholder="@yourhandle">
+            <div class="field-hint">With or without @</div>
+          </div>
+        </div>
+
+        <!-- YOUTUBE PANEL -->
+        <div class="panel" id="p-youtube">
+          <div class="field">
+            <label class="field-label" for="v-yt">YouTube Channel or Video URL <span style="color:var(--red-light)">*</span></label>
+            <input class="field-input" id="v-yt" type="text" placeholder="@yourchannel or full video URL">
+            <div class="field-hint">Supports @handle, channel URL, or video URL</div>
+          </div>
+        </div>
+
+        <!-- MAPS PANEL -->
+        <div class="panel" id="p-maps">
+          <div class="field">
+            <label class="field-label" for="v-mp">Address or Place Name <span style="color:var(--red-light)">*</span></label>
+            <textarea class="field-textarea" id="v-mp" placeholder="123 Main St, Mumbai, Maharashtra 400001&#10;— or —&#10;Taj Mahal, Agra"></textarea>
+            <div class="field-hint">Exact address or landmark name</div>
+          </div>
+        </div>
+
+        <!-- EMAIL PANEL -->
+        <div class="panel" id="p-email">
+          <div class="field">
+            <label class="field-label" for="v-emto">Email Address <span style="color:var(--red-light)">*</span></label>
+            <input class="field-input" id="v-emto" type="email" placeholder="contact@yourbusiness.com" autocomplete="email">
+          </div>
+          <div class="field">
+            <label class="field-label" for="v-emsub">Subject (optional)</label>
+            <input class="field-input" id="v-emsub" type="text" placeholder="Enquiry about your services">
+          </div>
+          <div class="field">
+            <label class="field-label" for="v-embody">Message Body (optional)</label>
+            <textarea class="field-textarea" id="v-embody" placeholder="Hello, I'd like to..."></textarea>
+          </div>
+        </div>
+
+        <!-- SMS PANEL -->
+        <div class="panel" id="p-sms">
+          <div class="field">
+            <label class="field-label" for="v-smph">Phone Number <span style="color:var(--red-light)">*</span></label>
+            <input class="field-input" id="v-smph" type="tel" placeholder="+919876543210">
+          </div>
+          <div class="field">
+            <label class="field-label" for="v-smmsg">Pre-filled Message (optional)</label>
+            <textarea class="field-textarea" id="v-smmsg" placeholder="Hi, I'm interested in..."></textarea>
+          </div>
+        </div>
+
+        <!-- PHONE PANEL -->
+        <div class="panel" id="p-phone">
+          <div class="field">
+            <label class="field-label" for="v-ph">Phone Number <span style="color:var(--red-light)">*</span></label>
+            <input class="field-input" id="v-ph" type="tel" placeholder="+919876543210">
+            <div class="field-hint">Include country code for international calls</div>
+          </div>
+        </div>
+
+        <!-- TWITTER PANEL -->
+        <div class="panel" id="p-twitter">
+          <div class="field">
+            <label class="field-label" for="v-tw">Twitter / X Username <span style="color:var(--red-light)">*</span></label>
+            <input class="field-input" id="v-tw" type="text" placeholder="@username">
+            <div class="field-hint">With or without @</div>
+          </div>
+        </div>
+
+        <!-- TEXT PANEL -->
+        <div class="panel" id="p-text">
+          <div class="field">
+            <label class="field-label" for="v-tx">Your Text <span style="color:var(--red-light)">*</span></label>
+            <textarea class="field-textarea" id="v-tx" placeholder="Enter any text, note, or message..."></textarea>
+            <div class="field-hint">Keep under 500 characters for best scan reliability</div>
+          </div>
+        </div>
+      </div>
+      <div class="tool-foot" id="s2-foot" style="display:none">
+        <button class="btn-nav-back" onclick="goStep(1)">← Back</button>
+        <button class="btn-nav-next" onclick="goStep(3)">Customize →</button>
+      </div>
+
+      <!-- STEP 3: CUSTOMIZE & GENERATE -->
+      <div id="s3" class="tool-body" style="display:none">
+        <div style="margin-bottom:16px">
+          <label class="field-label">QR Style</label>
+          <div class="style-row">
+            <div class="style-opt on" onclick="selectStyle('classic',this)">
+              <div class="style-opt-icon" aria-hidden="true">▦</div>
+              <div class="style-opt-name">Classic</div>
+            </div>
+            <div class="style-opt" onclick="selectStyle('dots',this)">
+              <div class="style-opt-icon" aria-hidden="true">⠿</div>
+              <div class="style-opt-name">Dots</div>
+            </div>
+            <div class="style-opt" onclick="selectStyle('gradient',this)">
+              <div class="style-opt-icon" aria-hidden="true">◈</div>
+              <div class="style-opt-name">Gradient</div>
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div style="margin-bottom:16px">
+          <label class="field-label">Color</label>
+          <div class="color-row">
+            <div class="color-swatch on" style="background:#000000" data-c="#000000" onclick="selectColor(this)" title="Black" aria-label="Black"></div>
+            <div class="color-swatch" style="background:#e8000d" data-c="#e8000d" onclick="selectColor(this)" title="Red" aria-label="Red"></div>
+            <div class="color-swatch" style="background:#1a1a2e" data-c="#1a1a2e" onclick="selectColor(this)" title="Midnight" aria-label="Midnight Blue"></div>
+            <div class="color-swatch" style="background:#0066cc" data-c="#0066cc" onclick="selectColor(this)" title="Blue" aria-label="Blue"></div>
+            <div class="color-swatch" style="background:#006622" data-c="#006622" onclick="selectColor(this)" title="Green" aria-label="Green"></div>
+            <div class="color-swatch" style="background:#7c3aed" data-c="#7c3aed" onclick="selectColor(this)" title="Purple" aria-label="Purple"></div>
+            <div class="color-custom" title="Custom color" aria-label="Custom color picker">
+              <span aria-hidden="true">+</span>
+              <input type="color" value="#000000" onchange="selectCustomColor(this.value)" aria-label="Choose custom color">
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div>
+          <label class="field-label">Size</label>
+          <div class="size-row">
+            <button class="size-btn" onclick="selectSize(180,this)">Small<br>180px</button>
+            <button class="size-btn on" onclick="selectSize(260,this)">Medium<br>260px</button>
+            <button class="size-btn" onclick="selectSize(360,this)">Large<br>360px</button>
+            <button class="size-btn" onclick="selectSize(500,this)">Print<br>500px</button>
+          </div>
+        </div>
+      </div>
+      <div class="tool-foot" id="s3-foot" style="display:none">
+        <button class="btn-nav-back" onclick="goStep(2)">← Back</button>
+        <button class="btn-generate" onclick="generateQR()">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <rect x="1" y="1" width="5" height="5" rx="1"/>
+            <rect x="10" y="1" width="5" height="5" rx="1"/>
+            <rect x="1" y="10" width="5" height="5" rx="1"/>
+            <rect x="10" y="10" width="5" height="5" rx="1"/>
+          </svg>
+          Generate QR Code
+        </button>
+      </div>
+
+      <!-- RESULT -->
+      <div class="qr-result" id="qr-result">
+        <div class="qr-stage">
+          <div class="qr-type-badge" id="qr-type-badge">QR CODE READY</div>
+          <div class="qr-frame">
+            <div class="qr-frame-inner">
+              <div class="qr-box">
+                <canvas id="qrc"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="qr-dl-row">
+            <button class="dl-btn dl-png" onclick="downloadPNG()">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M7 10L3 6h2.5V1h3v5H11L7 10z"/><rect x="1" y="11" width="12" height="2" rx="1"/></svg>
+              PNG
+            </button>
+            <button class="dl-btn dl-svg" onclick="downloadSVG()">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M7 10L3 6h2.5V1h3v5H11L7 10z"/><rect x="1" y="11" width="12" height="2" rx="1"/></svg>
+              SVG
+            </button>
+          </div>
+          <button class="re-edit-btn" onclick="reEdit()">Edit settings</button>
+        </div>
+      </div>
+    </div><!-- tool-card -->
+
+    <!-- SHARE ROW -->
+    <div style="margin-top:20px">
+      <div class="share-row">
+        <button class="share-btn" onclick="copyPageURL()">🔗 Copy Link</button>
+        <a href="https://twitter.com/intent/tweet?text=Free+QR+Code+Generator&url=https://theqrgenerator.in/qr-code-generator" target="_blank" rel="noopener noreferrer" class="share-btn">𝕏 Share</a>
+        <a href="https://wa.me/?text=Free+QR+Code+Generator+https://theqrgenerator.in/qr-code-generator" target="_blank" rel="noopener noreferrer" class="share-btn">💬 WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- AD IN-CONTENT -->
+    <div class="ad-slot" style="margin-top:24px" aria-label="Advertisement"><span>Advertisement</span></div>
+
+    <!-- CONTENT -->
+    <div class="prose" style="margin-top:40px">
+      <h2>What is a QR Code Generator?</h2>
+      <p>A QR code (Quick Response code) generator is a tool that converts information — a website URL, phone number, WiFi password, payment ID, or any other data — into a square barcode that any smartphone camera can read instantly.</p>
+      <p>The QR Generator creates high-quality QR codes in your browser, so your data never leaves your device. It's free, instant, and requires no account or credit card.</p>
+
+      <h2>How to Use This Generator</h2>
+      <ol>
+        <li><strong>Choose a type</strong> — website URL, WhatsApp, UPI, WiFi, or any of the 12 available types.</li>
+        <li><strong>Enter your details</strong> — fill in the fields relevant to your chosen QR type.</li>
+        <li><strong>Customize</strong> — pick a style (classic, dots, or gradient), choose a color, and select the output size.</li>
+        <li><strong>Download</strong> — save as PNG for digital use or SVG for print (infinitely scalable).</li>
+      </ol>
+
+      <h2>Which QR Type Should I Use?</h2>
+      <p>Use <strong>Website URL</strong> for any webpage. Use <strong>WhatsApp</strong> to let people chat with you without saving your number. Use <strong>UPI Payment</strong> to accept money at your shop. Use <strong>WiFi</strong> so guests can connect automatically. Use <strong>Google Maps</strong> so customers can find your location.</p>
+    </div>
+  </div><!-- page-main -->
+
+  <!-- SIDEBAR -->
+  <div class="page-sidebar">
+    <div class="ad-slot ad-slot-sidebar" aria-label="Advertisement"><span>Advertisement</span></div>
+    <div style="margin-top:20px;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)">
+      <h3 style="font-size:14px;font-weight:700;margin-bottom:14px">Quick Links</h3>
+      <div class="related-grid" style="grid-template-columns:1fr">
+        <a href="/website-qr-code-generator" class="related-card"><span class="related-card-icon">🌐</span><span class="related-card-name">Website QR</span></a>
+        <a href="/whatsapp-qr-code-generator" class="related-card"><span class="related-card-icon">💬</span><span class="related-card-name">WhatsApp QR</span></a>
+        <a href="/upi-qr-code-generator" class="related-card"><span class="related-card-icon">💳</span><span class="related-card-name">UPI QR</span></a>
+        <a href="/wifi-qr-code-generator" class="related-card"><span class="related-card-icon">📶</span><span class="related-card-name">WiFi QR</span></a>
+        <a href="/instagram-qr-code-generator" class="related-card"><span class="related-card-icon">📸</span><span class="related-card-name">Instagram QR</span></a>
+        <a href="/google-maps-qr-code-generator" class="related-card"><span class="related-card-icon">📍</span><span class="related-card-name">Maps QR</span></a>
+      </div>
+    </div>
+  </div>
+</div><!-- page-layout -->
+
+<!-- FAQ -->
+<section class="section" aria-labelledby="faq-heading">
+  <div class="section-hdr">
+    <span class="section-label">FAQ</span>
+    <h2 class="section-title" id="faq-heading">Frequently Asked Questions</h2>
+  </div>
+  <div class="faq-list" role="list">
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+        Is this QR code generator really free?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-answer">Yes, completely free — always. No subscription, no hidden charge, no credit card needed. The tool works entirely in your browser.</div>
+    </div>
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+        Will my QR code have a watermark or logo?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-answer">No watermark, no logo, no branding of any kind. The QR code you download is completely clean and yours to use personally or commercially.</div>
+    </div>
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+        Do my QR codes expire?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-answer">No. QR codes generated here are static — the data is embedded directly in the code. They never expire and work forever without any server dependency.</div>
+    </div>
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+        Can I use QR codes commercially?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-answer">Yes. QR codes from The QR Generator can be used for any personal or commercial purpose — print on menus, packaging, business cards, signage, merchandise, and more.</div>
+    </div>
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+        PNG or SVG — which should I download?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-answer">Use PNG for digital use (websites, social media, emails, presentations). Use SVG for printing — it scales to any size without pixelation, giving you sharp QR codes even at billboard sizes.</div>
+    </div>
+    <div class="faq-item" role="listitem">
+      <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+        My UPI QR is not scanning — what do I do?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-answer">Verify your UPI ID is correct and active. For physical prints, use the Large (360px) or Print (500px) size and print at minimum 3×3 cm. Low print quality reduces scan reliability.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEMA FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is this QR code generator really free?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, completely free — always. No subscription, no hidden charge, no credit card needed." }
+    },
+    {
+      "@type": "Question",
+      "name": "Will my QR code have a watermark or logo?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No watermark, no logo, no branding of any kind." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do my QR codes expire?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. QR codes are static — the data is embedded in the code. They never expire." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use QR codes commercially?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. QR codes from The QR Generator can be used for any personal or commercial purpose." }
+    }
+  ]
+}
+</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-logo">
+        <div class="footer-brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="5" height="5" rx="1"/><rect x="10" y="1" width="5" height="5" rx="1"/><rect x="1" y="10" width="5" height="5" rx="1"/><rect x="10" y="10" width="2.5" height="2.5" rx=".5"/><rect x="13.5" y="10" width="1.5" height="1.5" rx=".5"/><rect x="10" y="13.5" width="1.5" height="1.5" rx=".5"/><rect x="12.5" y="12.5" width="3" height="3" rx=".5"/></svg>
+        </div>
+        The QR Generator
+      </div>
+      <p>Free QR code generator. No signup. No watermark. Always free.</p>
+    </div>
+    <div class="footer-col">
+      <h4>QR Tools</h4>
+      <a href="/website-qr-code-generator">Website QR</a>
+      <a href="/whatsapp-qr-code-generator">WhatsApp QR</a>
+      <a href="/upi-qr-code-generator">UPI QR</a>
+      <a href="/wifi-qr-code-generator">WiFi QR</a>
+      <a href="/instagram-qr-code-generator">Instagram QR</a>
+      <a href="/youtube-qr-code-generator">YouTube QR</a>
+    </div>
+    <div class="footer-col">
+      <h4>More Tools</h4>
+      <a href="/google-maps-qr-code-generator">Maps QR</a>
+      <a href="/email-qr-code-generator">Email QR</a>
+      <a href="/sms-qr-code-generator">SMS QR</a>
+      <a href="/phone-qr-code-generator">Phone QR</a>
+      <a href="/twitter-qr-code-generator">Twitter QR</a>
+      <a href="/text-qr-code-generator">Text QR</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="/about">About</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact">Contact</a>
+      <a href="/privacy-policy">Privacy</a>
+      <a href="/terms">Terms</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 The QR Generator (theqrgenerator.in). All rights reserved.</span>
+    <div class="footer-bottom-links">
+      <a href="/privacy-policy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+// Override goStep to also show/hide foot divs
+const origGoStep = goStep;
+goStep = function(n) {
+  ['s1-foot','s2-foot','s3-foot'].forEach((id,i)=>{
+    const el = document.getElementById(id);
+    if(el) el.style.display = (i+1)===n ? 'flex' : 'none';
+  });
+  origGoStep(n);
+};
+// Init: show step 1 foot
+document.getElementById('s1-foot').style.display = 'flex';
+</script>
+</body>
+</html>
