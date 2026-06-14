@@ -868,3 +868,51 @@ canvas,
 iframe {
     max-width: 100%;
 }
+/* Mobile Fix */
+html, body {
+  overflow-x: hidden;
+}
+
+.page-layout,
+.page-main,
+.page-sidebar,
+.tool-card,
+.stepbar,
+.type-grid,
+.two-col,
+.style-row,
+.size-row,
+.color-row {
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+
+  .page-layout {
+    display: block !important;
+  }
+
+  .page-sidebar {
+    width: 100% !important;
+    margin-top: 20px;
+  }
+
+  .stepbar {
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+
+  .type-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .two-col {
+    grid-template-columns: 1fr !important;
+  }
+
+  .size-row,
+  .style-row,
+  .color-row {
+    flex-wrap: wrap !important;
+  }
+}
