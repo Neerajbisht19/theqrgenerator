@@ -191,7 +191,7 @@ function generateQR() {
       text: data,
       width: QR.size, height: QR.size,
       colorDark: '#000000', colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.M
+      correctLevel: QRCode.CorrectLevel.H
     });
   } catch(e) {
     showNotification('Error generating QR. Please check your input.', 'error');
