@@ -328,14 +328,14 @@ p { color: var(--muted); }
   position: relative; overflow: hidden;
 }
 .type-card:hover {
-  border-color: var(--red-border);
-  background: var(--red-dim);
+  border-color: var(--border);
+  background: rgba(255,255,255,.04);
   transform: translateY(-2px);
 }
 .type-card.on {
-  border-color: var(--red);
-  background: var(--red-dim);
-  box-shadow: 0 0 20px rgba(232,0,13,.15);
+  border-color: var(--border);
+  background: rgba(255,255,255,.02);
+  box-shadow: none;
 }
 .type-icon { font-size: 22px; line-height: 1; }
 .type-name { font-size: 11px; font-weight: 700; color: var(--off-white); }
