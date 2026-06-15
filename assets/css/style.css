@@ -938,3 +938,23 @@ html, body {
 }
 
 }
+@media (max-width:768px){
+
+.nav-links{
+    display:none;
+}
+
+.nav-links.open{
+    display:flex !important;
+    flex-direction:column;
+    position:fixed;
+    top:80px;
+    left:0;
+    right:0;
+    background:#111;
+    padding:20px;
+    z-index:99999;
+    gap:15px;
+}
+
+}
