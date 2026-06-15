@@ -7,7 +7,7 @@
 </div>
 <div class="section" style="padding-top:0;max-width:600px">
   <div class="tool-card fade-up">
-    <form action="https://formspree.io/f/xdavbnzn" method="POST">
+    <form id="contact-form" action="https://formspree.io/f/xdavbnzn" method="POST">
 <input type="hidden" name="_next" value="https://theqrgenerator.in/contact-success.html">
 <div class="tool-body">
 
@@ -46,4 +46,27 @@ Send Message
   </div>
 </div>
 <footer class="footer"><div class="footer-inner"><div class="footer-brand"><div class="footer-brand-logo"><div class="footer-brand-mark"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="white"><rect x="1" y="1" width="5" height="5" rx="1"/><rect x="10" y="1" width="5" height="5" rx="1"/><rect x="1" y="10" width="5" height="5" rx="1"/><rect x="10" y="10" width="6" height="6" rx="1"/></svg></div>The QR Generator</div><p>Free QR code generator. No signup. No watermark. Always free.</p></div><div class="footer-col"><h4>Tools</h4><a href="/website-qr-code-generator">Website QR</a><a href="/whatsapp-qr-code-generator">WhatsApp QR</a><a href="/upi-qr-code-generator">UPI QR</a><a href="/wifi-qr-code-generator">WiFi QR</a></div><div class="footer-col"><h4>More</h4><a href="/instagram-qr-code-generator">Instagram QR</a><a href="/youtube-qr-code-generator">YouTube QR</a><a href="/google-maps-qr-code-generator">Maps QR</a><a href="/email-qr-code-generator">Email QR</a></div><div class="footer-col"><h4>Company</h4><a href="/about">About</a><a href="/blog">Blog</a><a href="/contact">Contact</a><a href="/privacy-policy">Privacy</a><a href="/terms">Terms</a></div></div><div class="footer-bottom"><span class="footer-copy">© 2026 The QR Generator (theqrgenerator.in). All rights reserved.</span><div class="footer-bottom-links"><a href="/privacy-policy">Privacy</a><a href="/terms">Terms</a></div></div></footer>
-<script src="assets/js/main.js"></script></body></html>
+<script src="assets/js/main.js"></script>
+<script>
+document.getElementById("contact-form").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+
+  const response = await fetch(form.action, {
+    method: "POST",
+    body: new FormData(form),
+    headers: {
+      Accept: "application/json"
+    }
+  });
+
+  if (response.ok) {
+    window.location.href = "/contact-success.html";
+  } else {
+    alert("Message failed. Please try again.");
+  }
+});
+</script>
+
+</body></html>
