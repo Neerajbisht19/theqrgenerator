@@ -478,7 +478,7 @@ function initNav() {
   if (toggle && links) {
     toggle.addEventListener('click', () => {
     links.classList.toggle('open');
-    alert(links.className);
+    
 });
   }
 }
