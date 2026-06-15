@@ -474,7 +474,7 @@ function copyPageURL() {
 // Mobile nav toggle
 function initNav() {
   const toggle = document.querySelector('.nav-mobile-toggle');
-  const links = document.querySelector('.nav-links');
+  const links = document.getElementById('nav-links');
   if (toggle && links) {
     toggle.addEventListener('click', () => {
     links.classList.toggle('open');
