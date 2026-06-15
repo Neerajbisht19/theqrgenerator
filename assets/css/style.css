@@ -916,32 +916,5 @@ html, body {
     flex-wrap: wrap !important;
   }
 }
-@media (max-width:768px){
 
-  .nav-links{
-    display:none;
-  }
 
-  .nav-links.open{
-    display:flex !important;
-    flex-direction:column !important;
-    position:fixed !important;
-    top:64px !important;
-    left:0 !important;
-    right:0 !important;
-    width:100% !important;
-
-    background:#111 !important;
-
-    padding:20px !important;
-    z-index:999999 !important;
-    border-top:1px solid #222 !important;
-  }
-
-  .nav-links.open a{
-    display:block !important;
-    color:#fff !important;
-    padding:14px 10px !important;
-  }
-
-}
