@@ -477,8 +477,9 @@ function initNav() {
   const links = document.querySelector('.nav-links');
   if (toggle && links) {
     toggle.addEventListener('click', () => {
-      links.classList.toggle('open');
-    });
+    links.classList.toggle('open');
+    alert(links.className);
+});
   }
 }
 
