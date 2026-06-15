@@ -921,3 +921,27 @@ html, body {
   background:red !important;
   height:300px !important;
 }
+@media (max-width:768px){
+
+#nav-links.open{
+    display:flex !important;
+    flex-direction:column !important;
+    position:fixed !important;
+    top:80px !important;
+    left:0 !important;
+    width:100vw !important;
+    height:auto !important;
+    background:red !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    z-index:999999 !important;
+    padding:20px !important;
+    gap:15px !important;
+}
+
+#nav-links.open a{
+    color:#fff !important;
+    display:block !important;
+}
+
+}
