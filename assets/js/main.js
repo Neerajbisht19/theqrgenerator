@@ -158,7 +158,13 @@ function getQRData() {
 
     case 'maps': {
       const a = v('v-mp');
-      return a ? `https://maps.google.com/?q=${encodeURIComponent(a)}` : null;
+      if (!a) return null;
+      // Smart Logic: Check if it's already a direct Google Maps URL
+      if (a.toLowerCase().startsWith('http://') || a.toLowerCase().startsWith('https://')) {
+        return a;
+      }
+      // If it's just a text address, format it as a search query
+      return `https://maps.google.com/maps?q=${encodeURIComponent(a)}`;
     }
 
     case 'sms': {
