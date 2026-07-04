@@ -1,7 +1,14 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://theqrgenerator.in/sitemap.xml
+# Allow CSS, JS, images — Google needs these to render your pages correctly
+Allow: /assets/css/
+Allow: /assets/js/
+Allow: /assets/img/
+Allow: /favicon.png
 
-# Block common crawl-heavy paths
-Disallow: /assets/
+# Block only private/admin paths (add yours if any)
+Disallow: /admin/
+Disallow: /private/
+
+Sitemap: https://www.theqrgenerator.in/sitemap.xml
