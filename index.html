@@ -230,43 +230,31 @@
       <rect y="15" width="20" height="2" rx="1"/>
     </svg>
   </button>
-  <script>
-    // Self-contained nav — works independently of main.js
-    (function() {
-      var btn   = document.getElementById('nav-toggle');
-      var menu  = document.getElementById('nav-links');
-      if (!btn || !menu) return;
-
-      btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var open = menu.classList.toggle('open');
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
-
-      // Close on outside click
-      document.addEventListener('click', function(e) {
-        if (!menu.contains(e.target) && e.target !== btn) {
-          menu.classList.remove('open');
-          btn.setAttribute('aria-expanded', 'false');
-        }
-      });
-
-      // Close on ESC
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          menu.classList.remove('open');
-          btn.setAttribute('aria-expanded', 'false');
-        }
-      });
-    })();
-  </script>
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-      <rect y="3" width="20" height="2" rx="1"/>
-      <rect y="9" width="20" height="2" rx="1"/>
-      <rect y="15" width="20" height="2" rx="1"/>
-    </svg>
-  </button>
 </nav>
+<script>
+(function() {
+  var btn  = document.getElementById('nav-toggle');
+  var menu = document.getElementById('nav-links');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.addEventListener('click', function(e) {
+    if (!menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
+</script>
 
 <!-- HERO -->
 <section class="hero" aria-labelledby="hero-heading">
