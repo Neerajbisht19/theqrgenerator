@@ -39,14 +39,29 @@
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="googlebot" content="index, follow">
 
+<!-- hreflang — tell Google this is for India/English -->
+<link rel="alternate" hreflang="en-in" href="https://www.theqrgenerator.in/">
+<link rel="alternate" hreflang="en" href="https://www.theqrgenerator.in/">
+<link rel="alternate" hreflang="x-default" href="https://www.theqrgenerator.in/">
+
 <!-- Geo targeting — India -->
 <meta name="geo.region" content="IN">
 <meta name="geo.placename" content="India">
 
+<!-- PWA / Browser meta -->
+<meta name="theme-color" content="#0a0a0a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/favicon.png">
+
 <!-- Preconnect for performance -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" href="assets/css/style.css" as="style">
 <link rel="stylesheet" href="assets/css/style.css">
 
 <!-- AdSense -->
@@ -68,15 +83,12 @@
       "@id": "https://www.theqrgenerator.in/#website",
       "url": "https://www.theqrgenerator.in/",
       "name": "The QR Generator",
-      "alternateName": "theqrgenerator.in",
+      "alternateName": ["theqrgenerator.in", "QR Generator India", "Free QR Code Generator"],
       "description": "Free QR code generator for websites, UPI payments, WhatsApp, WiFi, Instagram, YouTube and more. No signup. No watermark.",
       "inLanguage": "en-IN",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://www.theqrgenerator.in/search?q={search_term_string}"
-        },
+        "target": "https://www.theqrgenerator.in/search?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     },
@@ -91,12 +103,18 @@
         "width": 512,
         "height": 512
       },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "url": "https://www.theqrgenerator.in/contact",
+        "availableLanguage": ["English", "Hindi"]
+      },
       "sameAs": []
     },
     {
       "@type": "SoftwareApplication",
       "@id": "https://www.theqrgenerator.in/#app",
-      "name": "The QR Generator",
+      "name": "The QR Generator — Free QR Code Maker",
       "applicationCategory": "UtilitiesApplication",
       "applicationSubCategory": "QR Code Generator",
       "operatingSystem": "Any",
@@ -107,17 +125,22 @@
         "priceCurrency": "INR"
       },
       "url": "https://www.theqrgenerator.in/",
-      "description": "Free online QR code generator supporting 12+ QR types including UPI, WhatsApp, WiFi, website URL, Instagram, YouTube and more.",
+      "description": "Free online QR code generator for India. Create UPI, WhatsApp, WiFi, website, Instagram, YouTube QR codes instantly. No signup. No watermark. Download PNG or SVG.",
       "featureList": [
-        "UPI QR Code Generator",
+        "UPI QR Code Generator — GPay, PhonePe, Paytm",
         "WhatsApp QR Code Generator",
         "WiFi QR Code Generator",
         "Website URL QR Code Generator",
         "Instagram QR Code Generator",
         "YouTube QR Code Generator",
+        "Google Maps QR Code Generator",
+        "Email QR Code Generator",
+        "SMS QR Code Generator",
+        "Phone Call QR Code Generator",
         "No signup required",
         "No watermark",
-        "PNG and SVG download"
+        "PNG and SVG download",
+        "Browser-based — data never leaves device"
       ],
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -126,6 +149,27 @@
         "bestRating": "5",
         "worstRating": "1"
       }
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://www.theqrgenerator.in/#toollist",
+      "name": "Free QR Code Generator Tools",
+      "description": "Complete list of free QR code generators available on The QR Generator",
+      "numberOfItems": 12,
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"UPI QR Code Generator","url":"https://www.theqrgenerator.in/upi-qr-code-generator"},
+        {"@type":"ListItem","position":2,"name":"WhatsApp QR Code Generator","url":"https://www.theqrgenerator.in/whatsapp-qr-code-generator"},
+        {"@type":"ListItem","position":3,"name":"WiFi QR Code Generator","url":"https://www.theqrgenerator.in/wifi-qr-code-generator"},
+        {"@type":"ListItem","position":4,"name":"Website URL QR Code Generator","url":"https://www.theqrgenerator.in/website-qr-code-generator"},
+        {"@type":"ListItem","position":5,"name":"Instagram QR Code Generator","url":"https://www.theqrgenerator.in/instagram-qr-code-generator"},
+        {"@type":"ListItem","position":6,"name":"YouTube QR Code Generator","url":"https://www.theqrgenerator.in/youtube-qr-code-generator"},
+        {"@type":"ListItem","position":7,"name":"Google Maps QR Code Generator","url":"https://www.theqrgenerator.in/google-maps-qr-code-generator"},
+        {"@type":"ListItem","position":8,"name":"Email QR Code Generator","url":"https://www.theqrgenerator.in/email-qr-code-generator"},
+        {"@type":"ListItem","position":9,"name":"SMS QR Code Generator","url":"https://www.theqrgenerator.in/sms-qr-code-generator"},
+        {"@type":"ListItem","position":10,"name":"Phone Call QR Code Generator","url":"https://www.theqrgenerator.in/phone-qr-code-generator"},
+        {"@type":"ListItem","position":11,"name":"Twitter QR Code Generator","url":"https://www.theqrgenerator.in/twitter-qr-code-generator"},
+        {"@type":"ListItem","position":12,"name":"Plain Text QR Code Generator","url":"https://www.theqrgenerator.in/text-qr-code-generator"}
+      ]
     },
     {
       "@type": "FAQPage",
@@ -159,7 +203,7 @@
           "name": "How do I create a UPI QR code that opens GPay or PhonePe?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Go to the UPI QR Code Generator, enter your UPI ID (like name@paytm or 9999999999@ybl), optionally set a fixed amount and merchant name, and click Generate. The QR code will open the UPI payment screen in GPay, PhonePe, Paytm, or any UPI app when scanned."
+            "text": "Go to the UPI QR Code Generator on The QR Generator, enter your UPI ID (like name@paytm or 9999999999@ybl), optionally set a fixed amount and merchant name, and click Generate. The QR code will open the UPI payment screen in GPay, PhonePe, Paytm, or any UPI app when scanned."
           }
         },
         {
@@ -168,6 +212,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Yes. Every QR code can be downloaded as a high-resolution PNG or a vector SVG file, which is perfect for large-format printing without any quality loss."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my data safe when I use The QR Generator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. All QR codes are generated directly in your browser using JavaScript. Your UPI ID, WiFi password, phone number and all other data never leave your device or touch our servers."
           }
         }
       ]
@@ -267,7 +319,7 @@
     Free QR Code Generator<br><span class="hero-accent">Instant. No Signup.</span>
   </h1>
   <p class="hero-sub">
-    Create QR codes for websites, UPI payments (GPay, PhonePe, Paytm), WhatsApp, WiFi networks, Instagram, YouTube and 6+ more types. Download as PNG or SVG in seconds — completely free, forever.
+    Create QR codes for websites, UPI payments (GPay, PhonePe, Paytm), WhatsApp, WiFi networks, Instagram, YouTube and 6+ more types. Download as PNG or SVG in seconds — completely free, forever. No signup. No watermark. No app needed.
   </p>
   <div class="hero-actions">
     <a href="/qr-code-generator" class="btn btn-primary btn-lg">
@@ -632,6 +684,26 @@
   </div>
 </div>
 
+<!-- SEO CONTENT BLOCK — long-tail keyword coverage -->
+<section class="section" style="max-width:860px;margin:0 auto" aria-label="About The QR Generator">
+  <div class="prose fade-up">
+    <h2>The Best Free QR Code Generator for India</h2>
+    <p>The QR Generator is a free, browser-based QR code maker built for Indian businesses and individuals. Whether you run a kirana store, a restaurant, a salon, or a freelance business — you can create a professional QR code in seconds without installing any app or creating an account.</p>
+
+    <h3>UPI QR Code Generator — Accept Payments Instantly</h3>
+    <p>Our <a href="/upi-qr-code-generator">UPI QR Code Generator</a> creates payment QR codes that work with every UPI app in India — GPay, PhonePe, Paytm, BHIM, Amazon Pay, and all bank UPI apps. Just enter your UPI ID, set an optional fixed amount, and download. Print it at your shop counter and start accepting payments without any POS machine or payment gateway.</p>
+
+    <h3>WhatsApp QR Code — Start Chats Without Saving Numbers</h3>
+    <p>Create a <a href="/whatsapp-qr-code-generator">WhatsApp QR code</a> with a custom message that opens a chat directly when scanned. Perfect for businesses, customer support, and marketing materials. No need for customers to save your number first.</p>
+
+    <h3>WiFi QR Code — One Scan to Connect</h3>
+    <p>Generate a <a href="/wifi-qr-code-generator">WiFi QR code</a> for your home, office, café, or hotel. Guests can connect to your WiFi network instantly by scanning — no typing passwords. Supports WPA, WPA2, and open networks.</p>
+
+    <h3>Why No Signup, No Watermark?</h3>
+    <p>Most QR code generators add a watermark or force you to create an account. We don't. Every QR code is generated entirely in your browser — no data is sent to our servers. Your UPI ID, WiFi password, and all inputs stay private on your device. Download clean, professional QR codes and use them commercially without any restrictions.</p>
+  </div>
+</section>
+
 <!-- AD SLOT FOOTER -->
 <div class="wrap" style="padding-top:32px;padding-bottom:32px">
   <div class="ad-slot ad-slot-footer" aria-label="Advertisement">
@@ -702,7 +774,7 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js"></script>
+<script src="assets/js/main.js" defer></script>
 <script>
 /* FAQ toggle — accessible */
 function toggleFaq(btn) {
