@@ -477,15 +477,10 @@ function copyPageURL() {
   copyToClipboard(window.location.href);
 }
 
-// Mobile nav toggle
+// Mobile nav toggle — handled inline in HTML
 function initNav() {
-  const toggle = document.querySelector('.nav-mobile-toggle');
-  const links = document.getElementById('nav-links');
-  if (toggle && links) {
-    toggle.addEventListener('click', () => {
-    links.classList.toggle('open');
-    
-});
+  // Nav toggle is handled by inline script in each HTML page
+}
   }
 }
 
@@ -504,43 +499,3 @@ document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initScrollAnim();
 });
-
-/* ─── NAV FIX: overwrite initNav so it doesn't conflict with inline onclick ─── */
-function initNav() {
-  const toggle = document.querySelector('.nav-mobile-toggle');
-  const links  = document.getElementById('nav-links');
-  if (!toggle || !links) return;
-
-  // Remove any inline onclick from the button so there's no double-toggle
-  toggle.removeAttribute('onclick');
-
-  toggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = links.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  });
-
-  // Close menu when clicking anywhere outside
-  document.addEventListener('click', (e) => {
-    if (!links.contains(e.target) && !toggle.contains(e.target)) {
-      links.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  // Close menu on ESC key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      links.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  // Close menu when a nav link is tapped (mobile UX)
-  links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      links.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-    });
-  });
-}
