@@ -481,8 +481,6 @@ function copyPageURL() {
 function initNav() {
   // Nav toggle is handled by inline script in each HTML page
 }
-  }
-}
 
 // Scroll animation
 function initScrollAnim() {
