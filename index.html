@@ -223,7 +223,43 @@
     <a href="/terms" class="nav-link">Terms</a>
     <a href="/qr-code-generator" class="nav-cta">Generate Free QR</a>
   </div>
-  <button class="nav-mobile-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+  <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+      <rect y="3" width="20" height="2" rx="1"/>
+      <rect y="9" width="20" height="2" rx="1"/>
+      <rect y="15" width="20" height="2" rx="1"/>
+    </svg>
+  </button>
+  <script>
+    // Self-contained nav — works independently of main.js
+    (function() {
+      var btn   = document.getElementById('nav-toggle');
+      var menu  = document.getElementById('nav-links');
+      if (!btn || !menu) return;
+
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var open = menu.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
+      // Close on outside click
+      document.addEventListener('click', function(e) {
+        if (!menu.contains(e.target) && e.target !== btn) {
+          menu.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Close on ESC
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          menu.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+  </script>
     <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
       <rect y="3" width="20" height="2" rx="1"/>
       <rect y="9" width="20" height="2" rx="1"/>
