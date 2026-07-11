@@ -100,7 +100,7 @@ ul { list-style: none; }
 
 /* TYPOGRAPHY */
 .display { font-family: 'Syne', 'Inter', sans-serif; font-weight: 800; letter-spacing: -2px; line-height: 1.02; }
-.display-xl { font-size: clamp(42px, 7vw, 80px); }
+.display-xl { font-size: clamp(36px, 4.5vw, 58px); }
 .display-lg { font-size: clamp(32px, 5vw, 60px); }
 .display-md { font-size: clamp(24px, 4vw, 42px); }
 
@@ -169,7 +169,7 @@ p { color: var(--muted); }
 .breadcrumb-sep { opacity: .5; }
 
 /* HERO */
-.hero { text-align: center; padding: clamp(60px,10vw,120px) clamp(16px,4vw,48px) clamp(40px,6vw,80px); max-width: 840px; margin: 0 auto; }
+.hero { text-align: center; padding: clamp(50px,8vw,100px) clamp(16px,4vw,48px) clamp(40px,6vw,80px); max-width: 960px; margin: 0 auto; }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 12px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
