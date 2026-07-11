@@ -100,7 +100,7 @@ ul { list-style: none; }
 
 /* TYPOGRAPHY */
 .display { font-family: 'Syne', 'Inter', sans-serif; font-weight: 800; letter-spacing: -2px; line-height: 1.02; }
-.display-xl { font-size: clamp(36px, 4.5vw, 58px); }
+.display-xl { font-size: clamp(30px, 3.6vw, 46px); }
 .display-lg { font-size: clamp(32px, 5vw, 60px); }
 .display-md { font-size: clamp(24px, 4vw, 42px); }
 
@@ -169,19 +169,19 @@ p { color: var(--muted); }
 .breadcrumb-sep { opacity: .5; }
 
 /* HERO */
-.hero { text-align: center; padding: clamp(50px,8vw,100px) clamp(16px,4vw,48px) clamp(40px,6vw,80px); max-width: 960px; margin: 0 auto; }
+.hero { text-align: center; padding: clamp(28px,4vw,56px) clamp(16px,4vw,48px) clamp(24px,3vw,40px); max-width: 960px; margin: 0 auto; }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 12px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
   color: var(--red-light); background: var(--red-dim); border: 1px solid var(--red-border);
-  padding: 8px 20px; border-radius: 100px; margin-bottom: 32px; transition: var(--transition);
+  padding: 8px 20px; border-radius: 100px; margin-bottom: 20px; transition: var(--transition);
 }
 .hero-badge:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(232, 0, 13, 0.15); }
 .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red-light); animation: pulse 2s ease infinite; box-shadow: 0 0 10px var(--red); }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.4)} }
-.hero h1 { margin-bottom: 24px; color: var(--off-white); }
+.hero h1 { margin-bottom: 16px; color: var(--off-white); }
 .hero-accent { color: var(--red); }
-.hero-sub { font-size: clamp(16px,2vw,19px); color: var(--muted); max-width: 600px; margin: 0 auto 40px; line-height: 1.8; font-weight: 500; }
+.hero-sub { font-size: clamp(15px,1.6vw,17px); color: var(--muted); max-width: 600px; margin: 0 auto 24px; line-height: 1.7; font-weight: 500; }
 .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
 
 /* BUTTONS */
