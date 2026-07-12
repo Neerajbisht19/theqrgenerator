@@ -7,6 +7,8 @@
 <meta name="description" content="Generate any type of QR code free — website, WhatsApp, UPI, WiFi, Instagram, YouTube, Maps, Email, SMS, Phone, Twitter, and plain text. Instant download, no signup.">
 <link rel="canonical" href="https://www.theqrgenerator.in/qr-code-generator">
 <link rel="icon" type="image/png" href="/favicon.png">
+
+<!-- Open Graph -->
 <meta property="og:title" content="Free QR Code Generator — All Types | The QR Generator">
 <meta property="og:description" content="Generate any type of QR code free. 12+ types, instant download, no watermark, no signup.">
 <meta property="og:image" content="https://www.theqrgenerator.in/assets/img/og.png">
@@ -14,12 +16,26 @@
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://www.theqrgenerator.in/qr-code-generator">
 <meta property="og:type" content="website">
+
+<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="robots" content="index, follow">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX'); /* REPLACE WITH YOUR GA4 ID */
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -39,7 +55,7 @@
 <nav class="nav" aria-label="Main navigation">
   <a href="/" class="nav-logo">
     <div class="nav-logo-mark" aria-hidden="true">
-      <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" fill="white">
         <rect x="1" y="1" width="6" height="6" rx="1"/>
         <rect x="11" y="1" width="6" height="6" rx="1"/>
         <rect x="1" y="11" width="6" height="6" rx="1"/>
@@ -86,7 +102,6 @@
 
     <div class="tool-card" id="qr-tool">
       
-
       <!-- STEP 1: TYPE SELECTION -->
       <div id="s1" class="tool-body">
         <div class="type-grid" role="listbox" aria-label="QR Code Type">
@@ -153,7 +168,6 @@
         </div>
       </div>
       
-
       <!-- STEP 2: DETAILS -->
       <div id="s2" class="tool-body" style="display:none">
         <!-- URL PANEL -->
@@ -371,7 +385,8 @@
       </div>
       <div class="tool-foot" id="s3-foot" style="display:none">
         <button class="btn-nav-back" onclick="goStep(2)">← Back</button>
-        <button class="btn-generate" onclick="generateQR()">
+        <!-- TRIGGER UPDATED WITH LOADER UI -->
+        <button class="btn-generate" onclick="document.getElementById('s-result').style.display='block'; generateQR()">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
             <rect x="1" y="1" width="5" height="5" rx="1"/>
             <rect x="10" y="1" width="5" height="5" rx="1"/>
@@ -382,28 +397,38 @@
         </button>
       </div>
 
-      <!-- RESULT -->
-      <div class="qr-result" id="qr-result">
+      <!-- NEW RESULT CONTAINER -->
+      <div id="s-result" style="display:none;">
         <div class="qr-stage">
-          <div class="qr-type-badge" id="qr-type-badge">QR CODE READY</div>
-          <div class="qr-frame">
-            <div class="qr-frame-inner">
-              <div class="qr-box">
-                <canvas id="qrc"></canvas>
+          <!-- Placeholder shown during the 600ms generation delay -->
+          <div id="qr-placeholder" class="qr-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3h6v6H3z"/><path d="M15 3h6v6h-6z"/><path d="M3 15h6v6H3z"/><path d="M15 15h6v6h-6z"/>
+            </svg>
+            <p>Generating your QR Code...</p>
+          </div>
+
+          <div class="qr-result" id="qr-result">
+            <div class="qr-type-badge" id="qr-type-badge">QR CODE READY</div>
+            <div class="qr-frame">
+              <div class="qr-frame-inner">
+                <div class="qr-box">
+                  <canvas id="qrc"></canvas>
+                </div>
               </div>
             </div>
+            <div class="qr-dl-row">
+              <button class="dl-btn dl-png" onclick="downloadPNG()">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M7 10L3 6h2.5V1h3v5H11L7 10z"/><rect x="1" y="11" width="12" height="2" rx="1"/></svg>
+                PNG
+              </button>
+              <button class="dl-btn dl-svg" onclick="downloadSVG()">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M7 10L3 6h2.5V1h3v5H11L7 10z"/><rect x="1" y="11" width="12" height="2" rx="1"/></svg>
+                SVG
+              </button>
+            </div>
+            <button class="re-edit-btn" onclick="reEdit()">Edit settings</button>
           </div>
-          <div class="qr-dl-row">
-            <button class="dl-btn dl-png" onclick="downloadPNG()">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M7 10L3 6h2.5V1h3v5H11L7 10z"/><rect x="1" y="11" width="12" height="2" rx="1"/></svg>
-              PNG
-            </button>
-            <button class="dl-btn dl-svg" onclick="downloadSVG()">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M7 10L3 6h2.5V1h3v5H11L7 10z"/><rect x="1" y="11" width="12" height="2" rx="1"/></svg>
-              SVG
-            </button>
-          </div>
-          <button class="re-edit-btn" onclick="reEdit()">Edit settings</button>
         </div>
       </div>
     </div><!-- tool-card -->
@@ -587,7 +612,7 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js"></script>
+<script src="/assets/js/main.js"></script>
 <script>
 // Override goStep to also show/hide foot divs
 const origGoStep = goStep;
@@ -596,9 +621,25 @@ goStep = function(n) {
     const el = document.getElementById(id);
     if(el) el.style.display = (i+1)===n ? 'flex' : 'none';
   });
+  
+  // Reset Step 3 UI
+  if (n !== 3) {
+     const res = document.getElementById('s-result');
+     if (res) res.style.display = 'none';
+     
+     const qrRes = document.getElementById('qr-result');
+     if (qrRes) qrRes.classList.remove('show');
+     
+     const placeholder = document.getElementById('qr-placeholder');
+     if (placeholder) placeholder.style.display = 'flex';
+  }
+  
   origGoStep(n);
 };
 
+function reEdit() {
+  goStep(2); // In all tools page, edit settings goes back to details step
+}
 </script>
 </body>
 </html>
