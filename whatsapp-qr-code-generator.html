@@ -7,6 +7,8 @@
 <meta name="description" content="Generate a WhatsApp QR code free. Let anyone start a chat without saving your number. Choose country code, pre-fill a message, download PNG or SVG instantly.">
 <link rel="canonical" href="https://www.theqrgenerator.in/whatsapp-qr-code-generator">
 <link rel="icon" type="image/png" href="/favicon.png">
+
+<!-- Open Graph -->
 <meta property="og:title" content="WhatsApp QR Code Generator — Free | The QR Generator">
 <meta property="og:description" content="Generate a WhatsApp QR code. No signup, no watermark. Let anyone chat with you by scanning.">
 <meta property="og:image" content="https://www.theqrgenerator.in/assets/img/og.png">
@@ -15,10 +17,22 @@
 <meta property="og:url" content="https://www.theqrgenerator.in/whatsapp-qr-code-generator">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="robots" content="index, follow">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX'); /* REPLACE WITH YOUR GA4 ID */
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can someone chat with me without saving my number?","acceptedAnswer":{"@type":"Answer","text":"Yes. When someone scans your WhatsApp QR code, it opens a chat with you directly, no phone number saving required."}},{"@type":"Question","name":"Does the pre-filled message get sent automatically?","acceptedAnswer":{"@type":"Answer","text":"No. The message is pre-filled in the compose box. The person still taps Send — giving them a chance to edit or cancel."}}]}
 </script>
@@ -34,19 +48,22 @@
     <a href="/whatsapp-qr-code-generator" class="nav-link active">WhatsApp</a>
     <a href="/upi-qr-code-generator" class="nav-link">UPI</a>
     <a href="/wifi-qr-code-generator" class="nav-link">WiFi</a>
-    <a href="/blog/index.html" class="nav-link">Blog</a>
+    <a href="/blog" class="nav-link">Blog</a>
     <a href="/qr-code-generator" class="nav-cta">All Tools</a>
   </div>
   <button class="nav-mobile-toggle" onclick="document.getElementById('nav-links').classList.toggle('open')" aria-label="Menu">
     <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><rect y="3" width="20" height="2" rx="1"/><rect y="9" width="20" height="2" rx="1"/><rect y="15" width="20" height="2" rx="1"/></svg>
   </button>
 </nav>
+
 <div class="breadcrumb">
   <a href="/">Home</a><span class="breadcrumb-sep">›</span>
   <a href="/qr-code-generator">QR Tools</a><span class="breadcrumb-sep">›</span>
   <span>WhatsApp QR Code Generator</span>
 </div>
+
 <div class="wrap"><div class="ad-slot ad-slot-top"><span>Advertisement</span></div></div>
+
 <div class="page-layout" style="padding-top:24px">
   <div class="page-main">
     <div style="margin-bottom:20px">
@@ -54,14 +71,16 @@
       <h1 style="font-size:clamp(26px,4vw,42px);font-weight:800;letter-spacing:-1.5px;margin-bottom:10px">WhatsApp QR Code Generator</h1>
       <p style="color:var(--muted);font-size:15px;max-width:560px">Create a QR code that opens a WhatsApp chat with your number. Works for business, shops, freelancers, and anyone who wants easier contact.</p>
     </div>
+    
     <div class="tool-card">
       <div class="stepbar">
         <div class="step active" id="sp1"><div class="step-num">1</div><div class="step-label">Your Number</div></div>
         <div class="step-line" id="sl1"></div>
         <div class="step" id="sp2"><div class="step-num">2</div><div class="step-label">Customize</div></div>
         <div class="step-line" id="sl2"></div>
-        <div class="step" id="sp3"><div class="step-num">3</div><div class="step-label">Download</div></div>
+        <div class="step" id="sp3"><div class="step-num">3</div><div class="step-label">Done</div></div>
       </div>
+      
       <div id="s1" class="tool-body">
         <div class="two-col">
           <div class="field">
@@ -94,6 +113,7 @@
       <div class="tool-foot" id="s1-foot" style="display:flex">
         <button class="btn-nav-next" onclick="goStepTool(2)">Customize →</button>
       </div>
+      
       <div id="s2" class="tool-body" style="display:none">
         <div style="margin-bottom:16px">
           <label class="field-label">QR Style</label>
@@ -127,53 +147,71 @@
       </div>
       <div class="tool-foot" id="s2-foot" style="display:none">
         <button class="btn-nav-back" onclick="goStepTool(1)">← Back</button>
-        <button class="btn-generate" onclick="generateQR()">
+        <button class="btn-generate" onclick="document.getElementById('s-result').style.display='block'; generateQR()">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="5" height="5" rx="1"/><rect x="10" y="1" width="5" height="5" rx="1"/><rect x="1" y="10" width="5" height="5" rx="1"/><rect x="10" y="10" width="5" height="5" rx="1"/></svg>
           Generate WhatsApp QR
         </button>
       </div>
-      <div class="qr-result" id="qr-result">
+      
+      <!-- NEW RESULT CONTAINER -->
+      <div id="s-result" style="display:none;">
         <div class="qr-stage">
-          <div class="qr-type-badge" id="qr-type-badge">WHATSAPP QR READY</div>
-          <div class="qr-frame"><div class="qr-frame-inner"><div class="qr-box"><canvas id="qrc"></canvas></div></div></div>
-          <div class="qr-dl-row">
-            <button class="dl-btn dl-png" onclick="downloadPNG()">⬇ PNG</button>
-            <button class="dl-btn dl-svg" onclick="downloadSVG()">⬇ SVG</button>
+          <!-- Placeholder shown during the 600ms generation delay -->
+          <div id="qr-placeholder" class="qr-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3h6v6H3z"/><path d="M15 3h6v6h-6z"/><path d="M3 15h6v6H3z"/><path d="M15 15h6v6h-6z"/>
+            </svg>
+            <p>Generating your QR Code...</p>
           </div>
-          <button class="re-edit-btn" onclick="reEdit()">Edit settings</button>
+          
+          <div class="qr-result" id="qr-result">
+            <div class="qr-type-badge" id="qr-type-badge">WHATSAPP QR READY</div>
+            <div class="qr-frame">
+              <div class="qr-frame-inner">
+                <div class="qr-box">
+                  <canvas id="qrc"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="qr-dl-row">
+              <button class="dl-btn dl-png" onclick="downloadPNG()">⬇ PNG</button>
+              <button class="dl-btn dl-svg" onclick="downloadSVG()">⬇ SVG</button>
+            </div>
+            <button class="re-edit-btn" onclick="reEdit()">Edit settings</button>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="ad-slot" style="margin-top:24px"><span>Advertisement</span></div>
 
-    <!-- NEW SEO OPTIMIZED CONTENT STARTS HERE -->
+    <!-- SEO OPTIMIZED CONTENT STARTS HERE -->
     <div class="prose" style="margin-top:40px">
       <h2>What is a WhatsApp QR Code?</h2>
-      <p>A WhatsApp QR code is a scannable code that opens a WhatsApp chat with a specific number[span_1](start_span)[span_1](end_span). When someone scans it, their WhatsApp opens instantly — no need to save your number first[span_2](start_span)[span_2](end_span). This is the same mechanism WhatsApp uses for its own "Click to Chat" feature, but packaged as a printable QR code[span_3](start_span)[span_3](end_span). It bridges the gap between physical marketing and instant digital communication.</p>
+      <p>A WhatsApp QR code is a scannable code that opens a WhatsApp chat with a specific number. When someone scans it, their WhatsApp opens instantly — no need to save your number first. This is the same mechanism WhatsApp uses for its own "Click to Chat" feature, but packaged as a printable QR code. It bridges the gap between physical marketing and instant digital communication.</p>
 
       <h2>Why Use a WhatsApp QR Code?</h2>
       <p>Whether you run a local store or offer professional services, minimizing the effort it takes for a customer to contact you directly translates to more leads and sales.</p>
       <ul>
-        <li><strong>For Businesses:</strong> A WhatsApp QR code on your counter, door, or packaging lets customers reach you with zero friction[span_4](start_span)[span_4](end_span).</li>
-        <li><strong>For Freelancers:</strong> It's an effective addition to visiting cards[span_5](start_span)[span_5](end_span). It allows potential clients to drop you a message instantly without struggling to copy a 10-digit number.</li>
-        <li><strong>For Events & Communities:</strong> It lets attendees contact the organiser without announcing a phone number publicly[span_6](start_span)[span_6](end_span).</li>
+        <li><strong>For Businesses:</strong> A WhatsApp QR code on your counter, door, or packaging lets customers reach you with zero friction.</li>
+        <li><strong>For Freelancers:</strong> It's an effective addition to visiting cards. It allows potential clients to drop you a message instantly without struggling to copy a 10-digit number.</li>
+        <li><strong>For Events & Communities:</strong> It lets attendees contact the organiser without announcing a phone number publicly.</li>
       </ul>
 
       <h2>How to Setup and Use a Pre-filled Message</h2>
-      <p>One of the most powerful features of our generator is the ability to add a custom template message. If you add a pre-filled message, WhatsApp will populate the compose box with your text when the chat opens[span_7](start_span)[span_7](end_span). For example, if you place a QR code on a specific product flyer, your pre-filled message could be: <em>"Hi! I'm contacting you from your menu QR code"</em>[span_8](start_span)[span_8](end_span) or <em>"I want to order the summer discount bundle."</em></p>
-      <p>Please note that the person can edit or delete it — it is never sent automatically[span_9](start_span)[span_9](end_span). The user always maintains full control and must manually tap the "Send" button to initiate the conversation.</p>
+      <p>One of the most powerful features of our generator is the ability to add a custom template message. If you add a pre-filled message, WhatsApp will populate the compose box with your text when the chat opens. For example, if you place a QR code on a specific product flyer, your pre-filled message could be: <em>"Hi! I'm contacting you from your menu QR code"</em> or <em>"I want to order the summer discount bundle."</em></p>
+      <p>Please note that the person can edit or delete it — it is never sent automatically. The user always maintains full control and must manually tap the "Send" button to initiate the conversation.</p>
 
       <h2>Tips for the Best Printing and Scanning Results</h2>
       <p>To ensure your QR code scans flawlessly every time, follow these industry best practices:</p>
       <ul>
-        <li>Use the <strong>Large (360px)</strong> or <strong>Print (500px)</strong> size for physical prints[span_10](start_span)[span_10](end_span). We also recommend downloading the SVG vector format for large banners.</li>
-        <li>Print at minimum 3×3 cm[span_11](start_span)[span_11](end_span). Larger is always better for scanning distance[span_12](start_span)[span_12](end_span).</li>
-        <li>Black on white has the highest contrast — best scan reliability[span_13](start_span)[span_13](end_span). Avoid using light colors like yellow or pale gray on a white background.</li>
-        <li>Test your QR code before printing in bulk[span_14](start_span)[span_14](end_span). Always use multiple devices (both iPhone and Android) to ensure universal compatibility.</li>
+        <li>Use the <strong>Large (360px)</strong> or <strong>Print (500px)</strong> size for physical prints. We also recommend downloading the SVG vector format for large banners.</li>
+        <li>Print at minimum 3×3 cm. Larger is always better for scanning distance.</li>
+        <li>Black on white has the highest contrast — best scan reliability. Avoid using light colors like yellow or pale gray on a white background.</li>
+        <li>Test your QR code before printing in bulk. Always use multiple devices (both iPhone and Android) to ensure universal compatibility.</li>
       </ul>
     </div>
-    <!-- NEW SEO OPTIMIZED CONTENT ENDS HERE -->
+    <!-- SEO OPTIMIZED CONTENT ENDS HERE -->
 
   </div>
   <div class="page-sidebar">
@@ -203,10 +241,6 @@
   </div>
 </section>
 
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can someone message me without saving my number?","acceptedAnswer":{"@type":"Answer","text":"Yes. Scanning the QR code opens a chat with you directly without the person saving your number."}},{"@type":"Question","name":"Does the pre-filled message get sent automatically?","acceptedAnswer":{"@type":"Answer","text":"No. The message is pre-filled in the compose box. The person can edit it before sending."}}]}
-</script>
-
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
@@ -220,7 +254,7 @@
       <a href="/instagram-qr-code-generator">Instagram QR</a><a href="/youtube-qr-code-generator">YouTube QR</a><a href="/google-maps-qr-code-generator">Maps QR</a><a href="/email-qr-code-generator">Email QR</a>
     </div>
     <div class="footer-col"><h4>Company</h4>
-      <a href="/about">About</a><a href="/blog/index.html">Blog</a><a href="/contact">Contact</a><a href="/privacy-policy">Privacy</a><a href="/terms">Terms</a>
+      <a href="/about">About</a><a href="/blog">Blog</a><a href="/contact">Contact</a><a href="/privacy-policy">Privacy</a><a href="/terms">Terms</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -228,20 +262,30 @@
     <div class="footer-bottom-links"><a href="/privacy-policy">Privacy</a><a href="/terms">Terms</a></div>
   </div>
 </footer>
-<script src="assets/js/main.js"></script>
+
+<script src="/assets/js/main.js"></script>
 <script>
 QR.type = 'whatsapp';
 function goStepTool(n) {
-  [1,2].forEach(i=>{
-    document.getElementById('s'+i).style.display=i===n?'block':'none';
-    document.getElementById('s'+i+'-foot').style.display=i===n?'flex':'none';
-    document.getElementById('sp'+i).className='step'+(i<n?' done':i===n?' active':'');
-    if(i<2) document.getElementById('sl'+i).classList.toggle('done',i<n);
+  [1, 2].forEach(i => {
+    document.getElementById('s' + i).style.display = i === n ? 'block' : 'none';
+    document.getElementById('s' + i + '-foot').style.display = i === n ? 'flex' : 'none';
+    document.getElementById('sp' + i).className = 'step' + (i < n ? ' done' : i === n ? ' active' : '');
+    if (i < 2) document.getElementById('sl' + i).classList.toggle('done', i < n);
   });
+  
+  // Reset Step 3 UI
+  document.getElementById('sp3').className = 'step';
+  document.getElementById('s-result').style.display = 'none';
   document.getElementById('qr-result').classList.remove('show');
-  window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('qr-placeholder').style.display = 'flex';
+  
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-function reEdit(){document.getElementById('qr-result').classList.remove('show');goStepTool(1);}
+
+function reEdit() {
+  goStepTool(1);
+}
 </script>
 </body>
 </html>
