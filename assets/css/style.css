@@ -399,6 +399,7 @@ p { color: var(--muted); }
 
 /* ADSENSE SLOTS */
 .ad-slot { background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: var(--muted2); font-size: 13px; text-align: center; min-height: 90px; margin: 32px 0; transition: var(--transition); }
+.ad-slot { display: none !important; }
 .ad-slot:hover { border-color: var(--border2); }
 .ad-slot-top { min-height: 90px; }
 .ad-slot-sidebar { min-height: 250px; }
