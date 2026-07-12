@@ -1,6 +1,6 @@
 /* =============================================
    THE QR GENERATOR — Core JS
-   theqrgenerator.in
+   Premium UI/UX Logic
    ============================================= */
 
 // State
@@ -40,13 +40,19 @@ function goStep(n) {
       if (line) line.classList.toggle('done', i < n);
     }
   });
+  
   const res = document.getElementById('qr-result');
+  const stage = document.querySelector('.qr-stage');
+  const placeholder = document.getElementById('qr-placeholder');
+  
   if (res) res.classList.remove('show');
+  if (placeholder) placeholder.style.display = 'flex';
+  if (stage) stage.classList.remove('is-generating');
+  
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function selectType(t, el) {
-
   const toolPages = {
     url: '/website-qr-code-generator',
     whatsapp: '/whatsapp-qr-code-generator',
@@ -107,21 +113,21 @@ function getQRData() {
     }
 
     case 'upi': {
-  const id = v('v-upiid');
-  if (!id) return null;
+      const id = v('v-upiid');
+      if (!id) return null;
 
-  const nm = v('v-upinm');
-  const am = v('v-upiam');
-  const nt = v('v-upinote');
+      const nm = v('v-upinm');
+      const am = v('v-upiam');
+      const nt = v('v-upinote');
 
-  let u = `upi://pay?pa=${id.trim()}`;
+      let u = `upi://pay?pa=${id.trim()}`;
 
-  if (nm) u += `&pn=${encodeURIComponent(nm)}`;
-  if (am && parseFloat(am) > 0) u += `&am=${parseFloat(am)}`;
-  u += `&cu=INR`;
-  if (nt) u += `&tn=${encodeURIComponent(nt)}`;
+      if (nm) u += `&pn=${encodeURIComponent(nm)}`;
+      if (am && parseFloat(am) > 0) u += `&am=${parseFloat(am)}`;
+      u += `&cu=INR`;
+      if (nt) u += `&tn=${encodeURIComponent(nt)}`;
 
-  return u;
+      return u;
     }
 
     case 'wifi': {
@@ -159,11 +165,9 @@ function getQRData() {
     case 'maps': {
       const a = v('v-mp');
       if (!a) return null;
-      // Smart Logic: Check if it's already a direct Google Maps URL
       if (a.toLowerCase().startsWith('http://') || a.toLowerCase().startsWith('https://')) {
         return a;
       }
-      // If it's just a text address, format it as a search query
       return `https://maps.google.com/maps?q=${encodeURIComponent(a)}`;
     }
 
@@ -190,9 +194,24 @@ function getQRData() {
 // Generate QR
 function generateQR() {
   const data = getQRData();
-  if (!data) { showNotification('Please fill in the required details.', 'error'); return; }
+  const btn = document.querySelector('.btn-generate');
+  
+  if (!data) { 
+    showNotification('Please fill in the required details.', 'error'); 
+    return; 
+  }
 
-  // Mark all steps done
+  // 1. ADD LOADER STATE TO BUTTON
+  if(btn) {
+    btn.classList.add('btn-loading');
+    btn.innerHTML = `<span class="spinner"></span> Generating...`;
+  }
+
+  // 2. ADD SHIMMER STATE TO PREVIEW AREA
+  const stage = document.querySelector('.qr-stage');
+  if (stage) stage.classList.add('is-generating');
+
+  // Mark all steps done visually
   [1,2,3].forEach(i => {
     const sp = document.getElementById('sp' + i);
     if (sp) sp.className = 'step done';
@@ -201,55 +220,65 @@ function generateQR() {
     if (i < 3) { const line = document.getElementById('sl' + i); if (line) line.classList.add('done'); }
   });
 
-  // Update badge
-  const badge = document.getElementById('qr-type-badge');
-  if (badge) badge.textContent = TYPE_LABELS[QR.type] || QR.type.toUpperCase();
-
-  const tmp = document.createElement('div');
-  tmp.style.cssText = 'position:fixed;left:-9999px;top:-9999px;visibility:hidden;';
-  document.body.appendChild(tmp);
-
-  try {
-    new QRCode(tmp, {
-      text: data,
-      // FIX Bug 5a: Generate at 4× the display size internally so qrcodejs gives us
-      // a high-density source canvas. renderQR will then scale DOWN to QR.size,
-      // which is always safe (downscaling never blurs module edges when we
-      // sample at integer module-center coordinates).
-      width: QR.size * 4, height: QR.size * 4,
-      colorDark: '#000000', colorLight: '#ffffff',
-      // FIX Bug 5b: Upgrade from M (15%) to H (30%) error correction.
-      // UPI QR codes are printed and laminated — H gives them resilience against
-      // scratches, dirt, and print artifacts that M cannot recover from.
-      correctLevel: QRCode.CorrectLevel.H
-    });
-  } catch(e) {
-    showNotification('Error generating QR. Please check your input.', 'error');
-    document.body.removeChild(tmp);
-    return;
-  }
-
+  // Wait 600ms to show the cool loading animation before computing
   setTimeout(() => {
-    const src = tmp.querySelector('canvas');
-    // FIX: pass the originally-requested display size so renderQR can use it
-    // for module detection (qrcodejs canvas != QR.size due to floor arithmetic)
-    if (src) renderQR(src, QR.size * 4);
-    document.body.removeChild(tmp);
-    const res = document.getElementById('qr-result');
-    if (res) {
-      res.classList.add('show');
-      setTimeout(() => res.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    
+    // Update badge
+    const badge = document.getElementById('qr-type-badge');
+    if (badge) badge.textContent = TYPE_LABELS[QR.type] || QR.type.toUpperCase();
+
+    const tmp = document.createElement('div');
+    tmp.style.cssText = 'position:fixed;left:-9999px;top:-9999px;visibility:hidden;';
+    document.body.appendChild(tmp);
+
+    try {
+      new QRCode(tmp, {
+        text: data,
+        width: QR.size * 4, height: QR.size * 4,
+        colorDark: '#000000', colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    } catch(e) {
+      showNotification('Error generating QR. Please check your input.', 'error');
+      document.body.removeChild(tmp);
+      
+      // Reset button
+      if(btn) {
+        btn.classList.remove('btn-loading');
+        btn.innerHTML = `Generate QR Code`;
+      }
+      if (stage) stage.classList.remove('is-generating');
+      return;
     }
-  }, 150);
+
+    setTimeout(() => {
+      const src = tmp.querySelector('canvas');
+      if (src) renderQR(src, QR.size * 4);
+      document.body.removeChild(tmp);
+      
+      const res = document.getElementById('qr-result');
+      const placeholder = document.getElementById('qr-placeholder');
+      
+      // Hide placeholder, Show Result
+      if (placeholder) placeholder.style.display = 'none';
+      if (stage) stage.classList.remove('is-generating');
+      if (res) {
+        res.classList.add('show');
+        setTimeout(() => res.scrollIntoView({ behavior: 'smooth', block: 'center' }), 150);
+      }
+      
+      // Reset Button State
+      if(btn) {
+        btn.classList.remove('btn-loading');
+        btn.innerHTML = `Generate QR Code`;
+      }
+      
+    }, 150);
+    
+  }, 600); // The artificial SaaS delay for UX
 }
 
-// ---------------------------------------------------------------------------
 // detectModuleCount — derives QR version from qrcodejs source canvas dimensions
-// ---------------------------------------------------------------------------
-// qrcodejs computes: cellSize = Math.floor(requestedSize / moduleCount)
-// actual canvas size = cellSize * moduleCount  (≤ requestedSize)
-// Valid module counts: 21 + 4*(version-1) for version 1–40
-// We try every valid count and check which one satisfies the equation.
 function detectModuleCount(srcW, requestedSize) {
   for (let version = 1; version <= 40; version++) {
     const mc = 21 + 4 * (version - 1);
@@ -261,28 +290,18 @@ function detectModuleCount(srcW, requestedSize) {
   return null;
 }
 
-// ---------------------------------------------------------------------------
-// renderQR — fixed version
-// ---------------------------------------------------------------------------
-// requestedSize: the width/height we passed to `new QRCode(...)`. We need this
-// to reverse-engineer the module count, because qrcodejs sets the canvas to
-// Math.floor(requestedSize/moduleCount)*moduleCount, NOT requestedSize itself.
+// renderQR
 function renderQR(src, requestedSize) {
-  const sz = QR.size;           // display output size (e.g. 260)
+  const sz = QR.size;           
   const out = document.getElementById('qrc');
   if (!out) return;
 
   const sCtx = src.getContext('2d');
-  const srcW = src.width;       // actual qrcodejs canvas width (≤ requestedSize)
+  const srcW = src.width;       
   const srcH = src.height;
 
-  // ------------------------------------------------------------------
-  // FIX Bug 1a: Detect the module grid so we can work in integer space.
-  // ------------------------------------------------------------------
   const detected = detectModuleCount(srcW, requestedSize);
   if (!detected) {
-    // Fallback: if detection fails (should not happen for QR v1-40),
-    // just blit with drawImage — better than garbage output.
     out.width = sz; out.height = sz;
     const ctx = out.getContext('2d');
     ctx.imageSmoothingEnabled = false;
@@ -292,19 +311,9 @@ function renderQR(src, requestedSize) {
     return;
   }
   const { moduleCount, cellSize: srcCell } = detected;
-
-  // ------------------------------------------------------------------
-  // FIX Bug 3: Quiet zone — ISO 18004 requires ≥4 modules of white
-  // border around the symbol. We allocate a fixed 12px quiet zone on
-  // each side (≥ 4 modules at the smallest module size we render).
-  // ------------------------------------------------------------------
-  const QZ = 12;  // quiet-zone pixels in output canvas
-
-  // FIX Bug 1b: Compute integer output cell width so every module lands
-  // on a whole-pixel boundary — eliminates sub-pixel anti-aliasing.
+  const QZ = 12;  
   const outCell = Math.floor((sz - QZ * 2) / moduleCount);
 
-  // If outCell is somehow 0 (extremely small canvas), bail to fallback.
   if (outCell < 1) {
     out.width = sz; out.height = sz;
     const ctx = out.getContext('2d');
@@ -312,47 +321,28 @@ function renderQR(src, requestedSize) {
     return;
   }
 
-  // Centre the symbol inside the canvas (remaining pixels split as margin).
   const qrPx = outCell * moduleCount;
-  const xOff = Math.floor((sz - qrPx) / 2);  // left/top offset (includes QZ)
+  const xOff = Math.floor((sz - qrPx) / 2);  
   const yOff = xOff;
 
-  // ------------------------------------------------------------------
-  // FIX Bug 6: Disable anti-aliasing on the output canvas context.
-  // ------------------------------------------------------------------
   out.width = sz;
   out.height = sz;
   const ctx = out.getContext('2d');
   ctx.imageSmoothingEnabled = false;
 
-  // White background (covers quiet zone too).
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(0, 0, sz, sz);
 
-  // ------------------------------------------------------------------
-  // Read pixel data from the source once (avoids repeated getImageData).
-  // ------------------------------------------------------------------
   const imgData = sCtx.getImageData(0, 0, srcW, srcH);
   const pixels = imgData.data;
 
-  // Helper: is a source module (col, row) dark?
-  // Sample from the CENTER of the source cell to avoid edge anti-aliasing
-  // that qrcodejs may have introduced at the 1px level.
   function isDark(col, row) {
     const px = (row * srcCell + Math.floor(srcCell / 2)) * srcW + (col * srcCell + Math.floor(srcCell / 2));
-    return pixels[px * 4] < 128;  // R channel: 0=black, 255=white
+    return pixels[px * 4] < 128; 
   }
 
-  // ------------------------------------------------------------------
-  // Choose draw style. Dots require outCell ≥ 6 to be scannable
-  // (radius must be ≥ 2px for scanner cameras to resolve).
-  // FIX Bug 4: classic style gets zero padding — solid modules are
-  //   required for finder patterns to decode correctly.
-  // FIX Bug 5: dots fall back to classic when outCell < 6.
-  // ------------------------------------------------------------------
   const style = (QR.style === 'dots' && outCell < 6) ? 'classic' : QR.style;
 
-  // Set fill colour / gradient for the whole pass.
   if (style === 'gradient') {
     const grad = ctx.createLinearGradient(xOff, yOff, xOff + qrPx, yOff + qrPx);
     grad.addColorStop(0, QR.color);
@@ -362,19 +352,14 @@ function renderQR(src, requestedSize) {
     ctx.fillStyle = QR.color;
   }
 
-  // ------------------------------------------------------------------
-  // Main render loop — integer coordinates throughout.
-  // ------------------------------------------------------------------
   for (let row = 0; row < moduleCount; row++) {
     for (let col = 0; col < moduleCount; col++) {
       if (!isDark(col, row)) continue;
 
-      // Integer pixel position — NO fractional values, NO anti-aliasing.
       const x = xOff + col * outCell;
       const y = yOff + row * outCell;
 
       if (style === 'dots') {
-        // FIX Bug 5: integer radius, minimum 2px so camera can resolve it.
         const r = Math.max(2, Math.floor(outCell / 2) - 1);
         const cx = x + Math.floor(outCell / 2);
         const cy = y + Math.floor(outCell / 2);
@@ -382,8 +367,6 @@ function renderQR(src, requestedSize) {
         ctx.arc(cx, cy, r, 0, Math.PI * 2);
         ctx.fill();
       } else {
-        // classic & gradient: solid square, zero padding.
-        // FIX Bug 4: removed the 6% pad that was fragmenting finder patterns.
         ctx.fillRect(x, y, outCell, outCell);
       }
     }
@@ -398,14 +381,10 @@ function lightenColor(hex, amt) {
   return '#' + [r,g,b].map(v => v.toString(16).padStart(2,'0')).join('');
 }
 
-// Download
+// Download PNG
 function downloadPNG() {
   const c = document.getElementById('qrc');
   if (!c) return;
-  // FIX: Export at 2× the display size for crisp print quality.
-  // We re-render into a temporary off-screen canvas at double resolution
-  // using the same integer-coordinate approach so the download is always
-  // pixel-perfect and scannable regardless of screen DPI.
   const scale = 2;
   const offscreen = document.createElement('canvas');
   offscreen.width = c.width * scale;
@@ -419,11 +398,13 @@ function downloadPNG() {
   a.click();
 }
 
+// Download SVG (Now scales properly)
 function downloadSVG() {
   const c = document.getElementById('qrc');
   if (!c) return;
   const sz = QR.size;
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}"><image href="${c.toDataURL('image/png')}" width="${sz}" height="${sz}"/></svg>`;
+  // Use high-res PNG embedded inside SVG for foolproof compatibility
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}"><image href="${c.toDataURL('image/png', 1.0)}" width="${sz}" height="${sz}"/></svg>`;
   const url = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
   const a = document.createElement('a');
   a.download = `theqrgenerator-${QR.type}.svg`;
@@ -433,7 +414,11 @@ function downloadSVG() {
 
 function reEdit() {
   const res = document.getElementById('qr-result');
+  const placeholder = document.getElementById('qr-placeholder');
+  
   if (res) res.classList.remove('show');
+  if (placeholder) placeholder.style.display = 'flex';
+  
   goStep(3);
 }
 
@@ -477,11 +462,6 @@ function copyPageURL() {
   copyToClipboard(window.location.href);
 }
 
-// Mobile nav toggle — handled inline in HTML
-function initNav() {
-  // Nav toggle is handled by inline script in each HTML page
-}
-
 // Scroll animation
 function initScrollAnim() {
   const obs = new IntersectionObserver(entries => {
@@ -494,6 +474,5 @@ function initScrollAnim() {
 
 // Init
 document.addEventListener('DOMContentLoaded', () => {
-  initNav();
   initScrollAnim();
 });
