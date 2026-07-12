@@ -1,29 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>YouTube QR Code Generator — Free | The QR Generator</title>
 <meta name="description" content="Generate a YouTube QR code for your channel or video. Let anyone subscribe or watch with one scan. Free, no watermark, download PNG or SVG.">
 <link rel="canonical" href="https://www.theqrgenerator.in/youtube-qr-code-generator">
 <link rel="icon" type="image/png" href="/favicon.png">
+
+<!-- Open Graph -->
 <meta property="og:title" content="YouTube QR Code Generator — Free | The QR Generator">
 <meta property="og:description" content="Generate a YouTube QR code for your channel or video. Let anyone subscribe or watch with one scan. Free, no watermark, download PNG or SVG.">
 <meta property="og:image" content="https://www.theqrgenerator.in/assets/img/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://www.theqrgenerator.in/youtube-qr-code-generator">
-<meta name="twitter:card" content="summary_large_image"><meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX'); /* REPLACE WITH YOUR GA4 ID */
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-<nav class="nav"><a href="/" class="nav-logo"><div class="nav-logo-mark"><svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" fill="white"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="11" y="1" width="6" height="6" rx="1"/><rect x="1" y="11" width="6" height="6" rx="1"/><rect x="11" y="11" width="3" height="3" rx=".5"/><rect x="15" y="11" width="2" height="2" rx=".5"/><rect x="11" y="15" width="2" height="2" rx=".5"/><rect x="14" y="14" width="3" height="3" rx=".5"/></svg></div>The QR Generator</a>
-<div class="nav-links" id="nav-links"><a href="/qr-code-generator" class="nav-link">All Tools</a><a href="/whatsapp-qr-code-generator" class="nav-link">WhatsApp</a><a href="/upi-qr-code-generator" class="nav-link">UPI</a><a href="/wifi-qr-code-generator" class="nav-link">WiFi</a><a href="/blog/index.html" class="nav-link">Blog</a><a href="/qr-code-generator" class="nav-cta">All Tools</a></div>
-<button class="nav-mobile-toggle" onclick="document.getElementById('nav-links').classList.toggle('open')" aria-label="Menu"><svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><rect y="3" width="20" height="2" rx="1"/><rect y="9" width="20" height="2" rx="1"/><rect y="15" width="20" height="2" rx="1"/></svg></button></nav>
-<div class="breadcrumb"><a href="/">Home</a><span class="breadcrumb-sep">›</span><a href="/qr-code-generator">QR Tools</a><span class="breadcrumb-sep">›</span><span>YouTube QR Code Generator — Free</span></div>
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-mark"><svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" fill="white"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="11" y="1" width="6" height="6" rx="1"/><rect x="1" y="11" width="6" height="6" rx="1"/><rect x="11" y="11" width="3" height="3" rx=".5"/><rect x="15" y="11" width="2" height="2" rx=".5"/><rect x="11" y="15" width="2" height="2" rx=".5"/><rect x="14" y="14" width="3" height="3" rx=".5"/></svg></div>
+    The QR Generator
+  </a>
+  <div class="nav-links" id="nav-links">
+    <a href="/qr-code-generator" class="nav-link">All Tools</a>
+    <a href="/whatsapp-qr-code-generator" class="nav-link">WhatsApp</a>
+    <a href="/upi-qr-code-generator" class="nav-link">UPI</a>
+    <a href="/wifi-qr-code-generator" class="nav-link">WiFi</a>
+    <a href="/blog" class="nav-link">Blog</a>
+    <a href="/qr-code-generator" class="nav-cta">All Tools</a>
+  </div>
+  <button class="nav-mobile-toggle" onclick="document.getElementById('nav-links').classList.toggle('open')" aria-label="Menu"><svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><rect y="3" width="20" height="2" rx="1"/><rect y="9" width="20" height="2" rx="1"/><rect y="15" width="20" height="2" rx="1"/></svg></button>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/">Home</a><span class="breadcrumb-sep">›</span>
+  <a href="/qr-code-generator">QR Tools</a><span class="breadcrumb-sep">›</span>
+  <span>YouTube QR Code Generator</span>
+</div>
+
 <div class="wrap"><div class="ad-slot ad-slot-top"><span>Advertisement</span></div></div>
+
 <div class="page-layout" style="padding-top:24px">
   <div class="page-main">
     <div style="margin-bottom:20px">
@@ -31,23 +68,72 @@
       <h1 style="font-size:clamp(26px,4vw,42px);font-weight:800;letter-spacing:-1.5px;margin-bottom:10px">YouTube QR Code Generator</h1>
       <p style="color:var(--muted);font-size:15px;max-width:560px">Create a QR code that opens your YouTube channel or a specific video. Grow subscribers and views from offline materials — business cards, packaging, flyers, and event banners.</p>
     </div>
+    
     <div class="tool-card">
-      <div class="stepbar"><div class="step active" id="sp1"><div class="step-num">1</div><div class="step-label">Details</div></div><div class="step-line" id="sl1"></div><div class="step" id="sp2"><div class="step-num">2</div><div class="step-label">Customize</div></div><div class="step-line" id="sl2"></div><div class="step" id="sp3"><div class="step-num">3</div><div class="step-label">Done</div></div></div>
-      <div id="s1" class="tool-body"><div class="field"><label class="field-label" for="v-yt">YouTube Channel or Video URL <span style="color:var(--red-light)">*</span></label><input class="field-input" id="v-yt" type="text" placeholder="@yourchannel  or  https://youtube.com/watch?v=..."><div class="field-hint">Supports @handle, channel URL, or full video URL</div></div></div>
+      <div class="stepbar">
+        <div class="step active" id="sp1"><div class="step-num">1</div><div class="step-label">Details</div></div><div class="step-line" id="sl1"></div>
+        <div class="step" id="sp2"><div class="step-num">2</div><div class="step-label">Customize</div></div><div class="step-line" id="sl2"></div>
+        <div class="step" id="sp3"><div class="step-num">3</div><div class="step-label">Done</div></div>
+      </div>
+      
+      <div id="s1" class="tool-body">
+        <div class="field">
+          <label class="field-label" for="v-yt">YouTube Channel or Video URL <span style="color:var(--red-light)">*</span></label>
+          <input class="field-input" id="v-yt" type="text" placeholder="@yourchannel  or  https://youtube.com/watch?v=...">
+          <div class="field-hint">Supports @handle, channel URL, or full video URL</div>
+        </div>
+      </div>
       <div class="tool-foot" id="s1-foot" style="display:flex"><button class="btn-nav-next" onclick="goStepTool(2)">Customize →</button></div>
+      
       <div id="s2" class="tool-body" style="display:none">
-<div style="margin-bottom:16px"><label class="field-label">QR Style</label><div class="style-row"><div class="style-opt on" onclick="selectStyle('classic',this)"><div class="style-opt-icon">▦</div><div class="style-opt-name">Classic</div></div><div class="style-opt" onclick="selectStyle('dots',this)"><div class="style-opt-icon">⠿</div><div class="style-opt-name">Dots</div></div><div class="style-opt" onclick="selectStyle('gradient',this)"><div class="style-opt-icon">◈</div><div class="style-opt-name">Gradient</div></div></div></div>
-<div class="divider"></div>
-<div style="margin-bottom:16px"><label class="field-label">Color</label><div class="color-row"><div class="color-swatch on" style="background:#000000" data-c="#000000" onclick="selectColor(this)"></div><div class="color-swatch" style="background:#e8000d" data-c="#e8000d" onclick="selectColor(this)"></div><div class="color-swatch" style="background:#1a1a2e" data-c="#1a1a2e" onclick="selectColor(this)"></div><div class="color-swatch" style="background:#0066cc" data-c="#0066cc" onclick="selectColor(this)"></div><div class="color-custom"><span>+</span><input type="color" value="#000000" onchange="selectCustomColor(this.value)"></div></div></div>
-<div class="divider"></div>
-<div><label class="field-label">Size</label><div class="size-row"><button class="size-btn" onclick="selectSize(180,this)">Small 180px</button><button class="size-btn on" onclick="selectSize(260,this)">Medium 260px</button><button class="size-btn" onclick="selectSize(360,this)">Large 360px</button><button class="size-btn" onclick="selectSize(500,this)">Print 500px</button></div></div></div>
-      <div class="tool-foot" id="s2-foot" style="display:none"><button class="btn-nav-back" onclick="goStepTool(1)">← Back</button><button class="btn-generate" onclick="generateQR()"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="5" height="5" rx="1"/><rect x="10" y="1" width="5" height="5" rx="1"/><rect x="1" y="10" width="5" height="5" rx="1"/><rect x="10" y="10" width="5" height="5" rx="1"/></svg>Generate YouTube QR</button></div>
-      <div class="qr-result" id="qr-result"><div class="qr-stage"><div class="qr-type-badge" id="qr-type-badge">YOUTUBE QR READY</div><div class="qr-frame"><div class="qr-frame-inner"><div class="qr-box"><canvas id="qrc"></canvas></div></div></div><div class="qr-dl-row"><button class="dl-btn dl-png" onclick="downloadPNG()">⬇ PNG</button><button class="dl-btn dl-svg" onclick="downloadSVG()">⬇ SVG</button></div><button class="re-edit-btn" onclick="reEdit()">Edit settings</button></div></div>
+        <div style="margin-bottom:16px"><label class="field-label">QR Style</label><div class="style-row"><div class="style-opt on" onclick="selectStyle('classic',this)"><div class="style-opt-icon">▦</div><div class="style-opt-name">Classic</div></div><div class="style-opt" onclick="selectStyle('dots',this)"><div class="style-opt-icon">⠿</div><div class="style-opt-name">Dots</div></div><div class="style-opt" onclick="selectStyle('gradient',this)"><div class="style-opt-icon">◈</div><div class="style-opt-name">Gradient</div></div></div></div>
+        <div class="divider"></div>
+        <div style="margin-bottom:16px"><label class="field-label">Color</label><div class="color-row"><div class="color-swatch on" style="background:#000000" data-c="#000000" onclick="selectColor(this)"></div><div class="color-swatch" style="background:#e8000d" data-c="#e8000d" onclick="selectColor(this)"></div><div class="color-swatch" style="background:#1a1a2e" data-c="#1a1a2e" onclick="selectColor(this)"></div><div class="color-swatch" style="background:#0066cc" data-c="#0066cc" onclick="selectColor(this)"></div><div class="color-custom"><span>+</span><input type="color" value="#000000" onchange="selectCustomColor(this.value)"></div></div></div>
+        <div class="divider"></div>
+        <div><label class="field-label">Size</label><div class="size-row"><button class="size-btn" onclick="selectSize(180,this)">Small 180px</button><button class="size-btn on" onclick="selectSize(260,this)">Medium 260px</button><button class="size-btn" onclick="selectSize(360,this)">Large 360px</button><button class="size-btn" onclick="selectSize(500,this)">Print 500px</button></div></div>
+      </div>
+      <div class="tool-foot" id="s2-foot" style="display:none">
+        <button class="btn-nav-back" onclick="goStepTool(1)">← Back</button>
+        <button class="btn-generate" onclick="document.getElementById('s-result').style.display='block'; generateQR()">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="5" height="5" rx="1"/><rect x="10" y="1" width="5" height="5" rx="1"/><rect x="1" y="10" width="5" height="5" rx="1"/><rect x="10" y="10" width="5" height="5" rx="1"/></svg>
+          Generate YouTube QR
+        </button>
+      </div>
+      
+      <!-- NEW RESULT CONTAINER -->
+      <div id="s-result" style="display:none;">
+        <div class="qr-stage">
+          <!-- Placeholder shown during the 600ms generation delay -->
+          <div id="qr-placeholder" class="qr-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3h6v6H3z"/><path d="M15 3h6v6h-6z"/><path d="M3 15h6v6H3z"/><path d="M15 15h6v6h-6z"/>
+            </svg>
+            <p>Generating your QR Code...</p>
+          </div>
+          
+          <div class="qr-result" id="qr-result">
+            <div class="qr-type-badge" id="qr-type-badge">YOUTUBE QR READY</div>
+            <div class="qr-frame">
+              <div class="qr-frame-inner">
+                <div class="qr-box">
+                  <canvas id="qrc"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="qr-dl-row">
+              <button class="dl-btn dl-png" onclick="downloadPNG()">⬇ PNG</button>
+              <button class="dl-btn dl-svg" onclick="downloadSVG()">⬇ SVG</button>
+            </div>
+            <button class="re-edit-btn" onclick="reEdit()">Edit settings</button>
+          </div>
+        </div>
+      </div>
     </div>
+    
     <div style="margin-top:16px"><div class="share-row"><button class="share-btn" onclick="copyPageURL()">🔗 Copy Link</button></div></div>
     <div class="ad-slot" style="margin-top:24px"><span>Advertisement</span></div>
 
-    <!-- NEW SEO OPTIMIZED CONTENT STARTS HERE -->
+    <!-- SEO OPTIMIZED CONTENT STARTS HERE -->
     <div class="prose" style="margin-top:40px">
       <h2>Free YouTube QR Code Generator: Grow Subscribers Offline</h2>
       <p>In today's digital landscape, asking people to "search for your channel on YouTube" often results in lost viewers. A custom <strong>YouTube QR Code</strong> bridges the gap between your physical marketing materials and your digital video content. With a single smartphone scan, users are instantly directed to your channel page or a specific video, making it incredibly easy for them to watch, like, and subscribe.</p>
@@ -70,20 +156,71 @@
       <h3>App Compatibility and Deep Linking</h3>
       <p>Our generator produces optimized links that utilize mobile deep linking. When a user scans the code with their smartphone camera, the operating system detects the YouTube URL. If the user has the official YouTube app installed on their iOS or Android device, the video or channel will open natively inside the app. This is crucial because it ensures the user is already logged in, allowing them to subscribe or leave a comment immediately.</p>
     </div>
-    <!-- NEW SEO OPTIMIZED CONTENT ENDS HERE -->
+    <!-- SEO OPTIMIZED CONTENT ENDS HERE -->
 
   </div>
   <div class="page-sidebar">
     <div class="ad-slot ad-slot-sidebar"><span>Advertisement</span></div>
-    <div style="margin-top:20px;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)"><h3 style="font-size:14px;font-weight:700;margin-bottom:14px">Related Tools</h3><div class="related-grid" style="grid-template-columns:1fr"><a href="/instagram-qr-code-generator" class="related-card"><span class="related-card-icon">📸</span><span class="related-card-name">Instagram QR</span></a><a href="/website-qr-code-generator" class="related-card"><span class="related-card-icon">🌐</span><span class="related-card-name">Website QR</span></a><a href="/twitter-qr-code-generator" class="related-card"><span class="related-card-icon">𝕏</span><span class="related-card-name">Twitter QR</span></a><a href="/whatsapp-qr-code-generator" class="related-card"><span class="related-card-icon">💬</span><span class="related-card-name">WhatsApp QR</span></a></div></div>
+    <div style="margin-top:20px;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)">
+      <h3 style="font-size:14px;font-weight:700;margin-bottom:14px">Related Tools</h3>
+      <div class="related-grid" style="grid-template-columns:1fr">
+        <a href="/instagram-qr-code-generator" class="related-card"><span class="related-card-icon">📸</span><span class="related-card-name">Instagram QR</span></a>
+        <a href="/website-qr-code-generator" class="related-card"><span class="related-card-icon">🌐</span><span class="related-card-name">Website QR</span></a>
+        <a href="/twitter-qr-code-generator" class="related-card"><span class="related-card-icon">𝕏</span><span class="related-card-name">Twitter QR</span></a>
+        <a href="/whatsapp-qr-code-generator" class="related-card"><span class="related-card-icon">💬</span><span class="related-card-name">WhatsApp QR</span></a>
+      </div>
+    </div>
   </div>
 </div>
-<section class="section"><div class="section-hdr"><span class="section-label">FAQ</span><h2 class="section-title">Frequently Asked Questions</h2></div><div class="faq-list"><div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Will the QR code open the YouTube app natively?<span class="faq-icon">+</span></button><div class="faq-answer">Yes! On smartphones with the YouTube app installed, scanning the code will open the app directly. This makes it much easier for viewers to subscribe since they are already logged in.</div></div><div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">What happens if I change my YouTube handle or channel URL?<span class="faq-icon">+</span></button><div class="faq-answer">If you update your channel handle or custom URL, you will need to generate a new QR code. The old QR code will continue pointing to the old URL, which may break if YouTube doesn't auto-redirect it.</div></div><div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Can I generate a QR code for an unlisted or private video?<span class="faq-icon">+</span></button><div class="faq-answer">Yes. Just paste the full URL of the unlisted video. Anyone who scans the code will be able to watch it. Private videos, however, will still require the viewer to be explicitly granted access via email by the channel owner.</div></div></div></section>
-<footer class="footer"><div class="footer-inner"><div class="footer-brand"><div class="footer-brand-logo"><div class="footer-brand-mark"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="white"><rect x="1" y="1" width="5" height="5" rx="1"/><rect x="10" y="1" width="5" height="5" rx="1"/><rect x="1" y="10" width="5" height="5" rx="1"/><rect x="10" y="10" width="6" height="6" rx="1"/></svg></div>The QR Generator</div><p>Free QR code generator. No signup. No watermark. Always free.</p></div><div class="footer-col"><h4>QR Tools</h4><a href="/website-qr-code-generator">Website QR</a><a href="/whatsapp-qr-code-generator">WhatsApp QR</a><a href="/upi-qr-code-generator">UPI QR</a><a href="/wifi-qr-code-generator">WiFi QR</a></div><div class="footer-col"><h4>More</h4><a href="/instagram-qr-code-generator">Instagram QR</a><a href="/youtube-qr-code-generator">YouTube QR</a><a href="/google-maps-qr-code-generator">Maps QR</a><a href="/email-qr-code-generator">Email QR</a></div><div class="footer-col"><h4>Company</h4><a href="/about">About</a><a href="/blog/index.html">Blog</a><a href="/contact">Contact</a><a href="/privacy-policy">Privacy</a><a href="/terms">Terms</a></div></div><div class="footer-bottom"><span class="footer-copy">© 2026 The QR Generator (theqrgenerator.in). All rights reserved.</span><div class="footer-bottom-links"><a href="/privacy-policy">Privacy</a><a href="/terms">Terms</a></div></div></footer>
-<script src="assets/js/main.js"></script>
+
+<section class="section">
+  <div class="section-hdr"><span class="section-label">FAQ</span><h2 class="section-title">Frequently Asked Questions</h2></div>
+  <div class="faq-list">
+    <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Will the QR code open the YouTube app natively?<span class="faq-icon">+</span></button><div class="faq-answer">Yes! On smartphones with the YouTube app installed, scanning the code will open the app directly. This makes it much easier for viewers to subscribe since they are already logged in.</div></div>
+    <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">What happens if I change my YouTube handle or channel URL?<span class="faq-icon">+</span></button><div class="faq-answer">If you update your channel handle or custom URL, you will need to generate a new QR code. The old QR code will continue pointing to the old URL, which may break if YouTube doesn't auto-redirect it.</div></div>
+    <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Can I generate a QR code for an unlisted or private video?<span class="faq-icon">+</span></button><div class="faq-answer">Yes. Just paste the full URL of the unlisted video. Anyone who scans the code will be able to watch it. Private videos, however, will still require the viewer to be explicitly granted access via email by the channel owner.</div></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-logo"><div class="footer-brand-mark"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="white"><rect x="1" y="1" width="5" height="5" rx="1"/><rect x="10" y="1" width="5" height="5" rx="1"/><rect x="1" y="10" width="5" height="5" rx="1"/><rect x="10" y="10" width="6" height="6" rx="1"/></svg></div>The QR Generator</div>
+      <p>Free QR code generator. No signup. No watermark. Always free.</p>
+    </div>
+    <div class="footer-col"><h4>QR Tools</h4><a href="/website-qr-code-generator">Website QR</a><a href="/whatsapp-qr-code-generator">WhatsApp QR</a><a href="/upi-qr-code-generator">UPI QR</a><a href="/wifi-qr-code-generator">WiFi QR</a></div>
+    <div class="footer-col"><h4>More</h4><a href="/instagram-qr-code-generator">Instagram QR</a><a href="/youtube-qr-code-generator">YouTube QR</a><a href="/google-maps-qr-code-generator">Maps QR</a><a href="/email-qr-code-generator">Email QR</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="/about">About</a><a href="/blog">Blog</a><a href="/contact">Contact</a><a href="/privacy-policy">Privacy</a><a href="/terms">Terms</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 The QR Generator (theqrgenerator.in). All rights reserved.</span>
+    <div class="footer-bottom-links"><a href="/privacy-policy">Privacy</a><a href="/terms">Terms</a></div>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js"></script>
 <script>
-QR.type='youtube';
-function goStepTool(n){[1,2].forEach(i=>{document.getElementById('s'+i).style.display=i===n?'block':'none';document.getElementById('s'+i+'-foot').style.display=i===n?'flex':'none';document.getElementById('sp'+i).className='step'+(i<n?' done':i===n?' active':'');if(i<2)document.getElementById('sl'+i).classList.toggle('done',i<n);});document.getElementById('qr-result').classList.remove('show');window.scrollTo({top:0,behavior:'smooth'});}
-function reEdit(){document.getElementById('qr-result').classList.remove('show');goStepTool(1);}
+QR.type = 'youtube';
+function goStepTool(n) {
+  [1, 2].forEach(i => {
+    document.getElementById('s' + i).style.display = i === n ? 'block' : 'none';
+    document.getElementById('s' + i + '-foot').style.display = i === n ? 'flex' : 'none';
+    document.getElementById('sp' + i).className = 'step' + (i < n ? ' done' : i === n ? ' active' : '');
+    if (i < 2) document.getElementById('sl' + i).classList.toggle('done', i < n);
+  });
+  
+  // Reset Step 3 UI
+  document.getElementById('sp3').className = 'step';
+  document.getElementById('s-result').style.display = 'none';
+  document.getElementById('qr-result').classList.remove('show');
+  document.getElementById('qr-placeholder').style.display = 'flex';
+  
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function reEdit() {
+  goStepTool(1);
+}
 </script>
-</body></html>
+</body>
+</html>
